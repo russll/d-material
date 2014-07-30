@@ -1,6 +1,7 @@
 //app.use(module, { components: [ 'd-paper-button']})
 
 module.exports = run;
+
 function run(app, options){
     options || (options = {});//TODO create optional loading of components
 
