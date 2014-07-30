@@ -1,0 +1,52 @@
+.d-paper-toggle-button 
+  display inline-block
+
+
+  &focus 
+    outline none
+  
+  
+  .toggle-container 
+    position relative
+    width 64px
+    height 16px
+  
+  
+  .toggle-bar 
+    position absolute
+    top 8px
+    left 16px
+    height 1px
+    width 32px
+    background-color #5a5a5a
+    pointer-events none
+  
+  
+  .toggle-bar.checked 
+    background-color #0f9d58
+  
+  
+  .toggle-container.checked .checked-bar 
+    width 100%
+  
+  
+  .toggle-radio 
+    position absolute
+    left 0
+    padding 8px 48px 8px 0
+    margin -8px -48px -8px 0
+    transition -webkit-transform linear .08s
+    transition transform linear .08s
+  
+  
+  .toggle-radio.checked 
+    -webkit-transform translate(48px, 0)
+    transform translate(48px, 0)
+    padding 8px 0 8px 48px
+    margin -8px 0 -8px -48px
+  
+  
+  .toggle-radio.dragging 
+    -webkit-transition none
+    transition none
+  

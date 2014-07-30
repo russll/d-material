@@ -1,0 +1,57 @@
+<index: element="d-core-toolbar" attributes="middle bottom">
+<!--
+`core-toolbar` is a horizontal bar containing elements that can be used for
+label, navigation, search and actions.
+
+    <core-toolbar>
+      <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
+      <div flex>Title</div>
+      <core-icon-button icon="more" on-tap="{{moreAction}}"></core-icon-button>
+    </core-toolbar>
+
+`core-toolbar` has a standard height, but can made be taller by setting `tall`
+class on the `core-toolbar`.  This will make the toolbar 3x the normal height.
+
+    <core-toolbar class="tall">
+      <core-icon-button icon="menu"></core-icon-button>
+    </core-toolbar>
+    
+Apply `medium-tall` class to make the toolbar medium tall.  This will make the 
+toolbar 2x the normal height.
+
+    <core-toolbar class="medium-tall">
+      <core-icon-button icon="menu"></core-icon-button>
+    </core-toolbar>
+
+When taller, elements can pin to either the top (default), middle or bottom.
+
+    <core-toolbar class="tall">
+      <core-icon-button icon="menu"></core-icon-button>
+      <div class="middle indent">Middle Title</div>
+      <div class="bottom indent">Bottom Title</div>
+    </core-toolbar>
+    
+To make an element completely fit at the bottom of the toolbar, use `fit` along
+with `bottom`.
+
+    <core-toolbar class="tall">
+      <div class="progressBar" class="bottom fit"></div>
+    </core-toolbar>
+
+-->
+
+<div class="d-core-toolbar {{mode}}">
+    
+  <div class="bottom-bar toolbar-tools center horizontal layout">
+    {{@bottom}}
+  </div>
+  
+  <div class="middle-bar toolbar-tools center horizontal layout">
+    {{@middle}}
+  </div>
+
+  <div class="top-bar toolbar-tools center horizontal layout">
+    {{@content}}
+  </div>
+
+</div>

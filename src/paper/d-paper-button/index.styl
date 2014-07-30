@@ -1,0 +1,82 @@
+.d-paper-button
+  display inline-block
+  position relative
+  border 0
+  background transparent
+  text-align center
+  font inherit
+  text-transform uppercase
+  outline none
+  border-radius 3px
+  -webkit-user-select none
+  user-select none
+  cursor pointer
+  /*&:hover*/
+    /*background #e4e4e4*/
+  &.raised-button
+    background #dfdfdf
+    /*&:hover*/
+      /*background #d6d6d6*/
+  &.raised-button .d-paper-ripple
+    color #cecece
+  &.disabled
+    background #eaeaea !important
+    color #a8a8a8 !important
+    cursor auto
+    pointer-events none
+  .d-paper-shadow
+    border-radius 3px
+  .shadow-container
+    border-radius inherit
+    overflow visible
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+  .clip
+    position relative
+    border-radius inherit
+    overflow hidden
+  .d-paper-ripple
+    border-radius inherit
+    position absolute
+    top 0
+    left 0
+    bottom 0
+    right 0
+    color #d1d1d1
+    pointer-events none
+  .d-paper-ripple
+    canvas
+      top 0
+      left 0
+  .content
+    /* needed to position the ink behind the content */
+    position relative
+  .icon
+    margin 8px
+  .content > span
+    display inline-block
+    margin 8px 16px
+  &.fab
+    box-sizing border-box
+    width 56px
+    height 56px
+    background $accent-color-1
+    border-radius 50%
+    fill #fff
+    &.mini
+      width 40px
+      height 40px
+    .icon
+      display block
+      margin 16px
+    &.mini
+      .icon
+        margin 8px
+    .d-paper-shadow
+      border-radius 50%
+  &.bottom
+    bottom -50%
+

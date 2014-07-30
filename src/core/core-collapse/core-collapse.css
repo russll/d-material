@@ -1,0 +1,7 @@
+ core-collapse {
+  display: block;
+}
+
+ .core-collapse-closed {
+  display: none;
+}

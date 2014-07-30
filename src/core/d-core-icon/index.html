@@ -1,0 +1,41 @@
+<index: element="d-core-icon">
+<!--
+
+The `core-icon` element displays an icon. By default an icon renders as 24px square.
+
+Example using src:
+
+    <core-icon src="star.png"></core-icon>
+
+Example setting size to 32px x 32px:
+
+    <core-icon class="big" src="big_star.png"></core-icon>
+
+    <style>
+      .big {
+        height: 32px;
+        width: 32px;
+      }
+    </style>
+
+Example using icon from default iconset:
+
+    <core-icon icon="menu"></core-icon>
+
+Example using icon `cherry` from custom iconset `fruit`:
+
+    <core-icon icon="fruit:cherry"></core-icon>
+
+See [core-iconset](#core-iconset) and [core-iconset-svg](#core-iconset-svg) for more information about
+how to use a custom iconset.
+
+
+-->
+
+<div as="icon" class="d-core-icon {{class}}" style="width:{{width}}px;height:{{height}}px;">
+    {{if mode == 'svg'}}
+        <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {{width}} {{height}}" width="{{width}}" height="{{height}}" preserveAspectRatio="xMidYMid meet">-->
+            <!--{{unescaped data}}-->
+        <!--</svg>-->
+    {{/}}
+</div>

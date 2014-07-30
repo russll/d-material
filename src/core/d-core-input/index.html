@@ -1,0 +1,70 @@
+<index: element="d-core-input">
+<!--
+/**
+ * core-input is an unstyled single- or multi-line text field where user can
+ * enter input.
+ *
+ * Example:
+ *
+ *     <core-input placeholder="Placeholder text here"></core-input>
+ *
+ *     <core-input multiline placeholder="Enter multiple lines here"></core-input>
+ *
+ * The text input's value is considered "committed" if the user hits the `enter`
+ * key or blurs the input after changing the value. The "change" event is fired
+ * when the value becomes committed, and the committed value is stored in the
+ * "value" property. The current value of the input is stored in the "inputValue"
+ * property.
+ *
+ * core-input also can optionally validate the value by providing it with a
+ * regular expression to match against, or a validation function. The
+ * "input-invalid" event is fired if the input value changes and is invalid.
+ * The "invalid" property is also available for observation.
+ *
+ * Example:
+ *
+ *     // valid only if the value is a number
+ *     <core-input validate="^[0-9]*$" on-input-invalid="{{inputInvalidAction}}"></core-input>
+ *
+ *     this.$.input.validate = /^[0-9]*$/;  // valid only if the value is a number
+ *
+ *     this.$.input2.validate = function(value) {
+ *       return value === 'foo';  // valid only if the value is 'foo'
+ *     }
+ *
+ * @group Polymer Core Elements
+ * @element core-input
+ * @homepage github.io
+ */
+-->
+
+<!--
+Fired when the inputValue of is changed. This is the same event as the DOM
+"input" event.
+
+@event input
+-->
+
+<!--
+Fired when the user commits the value of the input, either by the hitting the
+`enter` key or blurring the input after the changing the inputValue. Also see the
+DOM "change" event.
+
+@event change
+-->
+
+<!--
+Fired when the inputValue of this text input changes and fails validation.
+
+-->
+
+<div class="d-core-input{{if invalid}} invalid{{/if}}" on-focus="{{focusAction}}">
+
+    {{if multiline}}
+      <textarea as="input" class="input{{if fit}} fit{{/if}}{{if disabled}} disabled{{/if}}" value="{{inputValue}}" rows="{{rows}}" placeholder="{{placeholder}}" required="{{required}}" readonly="{{readonly}}" aria-label="{{label || placeholder}}" aria-invalid="{{invalid}}" on-change="{{inputChangeAction}}" on-focus="{{inputFocusAction}}" on-blur="{{inputBlurAction}}"></textarea>
+    {{/if}}
+
+    {{if !multiline}}
+      <input as="input" class="input{{if disabled}} disabled{{/if}}" value="{{inputValue}}" type="{{type}}" placeholder="{{placeholder}}" required="{{required}}" readonly="{{readonly}}" aria-label="{{label || placeholder}}" aria-invalid="{{invalid}}" on-change="{{inputChangeAction}}" on-focus="{{inputFocusAction}}" on-blur="{{inputBlurAction}}">
+    {{/if}}
+</div>

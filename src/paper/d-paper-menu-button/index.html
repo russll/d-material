@@ -1,0 +1,25 @@
+<index: element="d-paper-menu-button">
+<!--
+A `paper-menu-button` is a `paper-icon-button` that opens a drop down menu when tapped.
+
+Example:
+
+    <paper-menu-button icon="menu">
+      <div>Menu Item 1</div>
+      <div>Menu Item 2</div>
+      <div>Menu Item 3</div>
+    </paper-menu-button>
+
+-->
+
+<div class="paper-menu-button {{transition.base}}{{if opened}} {{transition.opened}}{{/if}} {{if !opened}}{{transition.base + '-' + transition.type}}{{/if}} {{class}}" opened="{{opened}}" on-mousedown="{{downAction}}" on-mouseup="{{upAction}}">
+    <div class="overlay">
+      <d-paper-shadow z="0" hasPosition></d-paper-shadow>
+      <div class="paper-menu-button-overlay-ink"></div>
+      <div class="overlay-bg paper-menu-button-overlay-bg"></div>
+      <d-core-menu class="menu">
+        {{@content}}
+      </d-core-menu>
+    </div>
+    <d-core-icon src="{{src}}" icon="{{icon}}"></d-core-icon>
+</div>

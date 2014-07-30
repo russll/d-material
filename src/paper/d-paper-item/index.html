@@ -1,0 +1,29 @@
+<index: element="d-paper-item">
+<!--
+@group Paper Elements
+
+`paper-item` is a list-item object for use in menus. It may contain and icon and/or
+a text label.
+
+Example:
+
+    <core-menu>
+        <paper-item icon="refresh">Refresh</paper-item>
+        <paper-item>Help</paper-item>
+        <paper-item>Sign Out</paper-item>
+    </core-menu>
+
+@class paper-item
+-->
+
+<div class="d-paper-item{{if center == 'true'}} center{{/if}}{{if horizontal == 'true'}}horizontal{{/if}}{{if layout == 'true'}}layout{{/if}}">
+
+    <d-paper-ripple></d-paper-ripple>
+
+    {{if icon}}
+        <d-core-icon class="icon" src="{{iconSrc}}" icon="{{icon}}"></d-core-icon>
+    {{/if}}
+
+    {{label}}
+    {{@content}}
+</div>

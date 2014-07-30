@@ -1,0 +1,35 @@
+<index: element="d-paper-tab">
+
+<!--
+`paper-tab` is styled to look like a tab.  It should be used in conjunction with
+`paper-tabs`.
+
+Example:
+
+    <paper-tabs selected="0">
+      <paper-tab>TAB 1</paper-tab>
+      <paper-tab>TAB 2</paper-tab>
+      <paper-tab>TAB 3</paper-tab>
+    </paper-tabs>
+    
+Styling tab:
+
+To change the ink color:
+
+    .pink paper-tab::shadow #ink {
+      color: #ff4081;
+    }
+
+-->
+
+<div class="d-paper-tab {{if noink}}noink{{/if}}" role="tab">
+
+  <div class="tab-container center-justified center horizontal layout">
+  
+    <div class="tab-content">{{@content}}</div>
+    <div class="ink">
+        <d-paper-ripple initialOpacity="0.95" opacityDecayVelocity="0.98"></d-paper-ripple>
+    </div>
+    
+  </div>
+</div>

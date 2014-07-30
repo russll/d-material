@@ -1,0 +1,22 @@
+<index: element="d-paper-tile">
+    <div as="wrapper" class="d-paper-tile{{if raised}} raised-button{{/if}} {{class}}" on-dblclick="open(item, $element, $event)" on-mousedown="downAction($event)" on-mouseup="upAction($event)" on-mouseenter="mouseEnterAction($event)" on-mouseleave="mouseLeaveAction($event)" on-focus="focusAction($event)" on-blur="blurAction($event)" on-contextmenu="contextMenuAction($event)" style="z-index: {{z}};">
+        {{if raised}}
+            <div class="shadow-container fit">
+                <d-paper-shadow z="{{z}}" splash="{{splash}}" animated="{{animated}}" borderRadius="{{borderRadius}}"></d-paper-shadow>
+            </div>
+        {{/if}}
+        {{if rippled}}
+        <div class="ripple-container fit">
+            <d-paper-ripple as="ripple" recenteringTouch borderRadius="0" pixelDensity="2"></d-paper-ripple>
+        </div>
+        {{/if}}
+        <div class="data-container">
+            <span class="name">
+                {{if icon}}
+                    <d-core-icon icon="{{icon}}" src="{{iconSrc}}"></d-core-icon>
+                {{/if}}
+                {{name}}
+            </span>
+        </div>
+
+    </div>

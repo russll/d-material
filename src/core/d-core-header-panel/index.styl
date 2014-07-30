@@ -1,0 +1,72 @@
+.d-core-header-panel 
+  display block
+  position relative
+  height 100%
+  .header-content
+    color $text-color-1
+    fill $primary-color-3
+  .outer-container
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    overflow-y auto
+    overflow-x hidden
+    -webkit-overflow-scrolling touch
+
+
+  .main-panel
+    position relative
+
+
+  .main-container
+    position relative
+    overflow-y auto
+    overflow-x hidden
+    -webkit-overflow-scrolling touch
+
+
+  .drop-shadow
+    position absolute
+    top 0
+    left 0
+    right 0
+    height 6px
+    box-shadow inset 0px 5px 5px -6px rgba(0, 0, 0, 0.4)
+
+
+  .drop-shadow.hidden
+    display none
+
+
+  /*
+  mode scroll
+  */
+  &.scroll
+    .main-container
+      overflow visible
+
+
+  /*
+  mode cover
+  */
+  &.cover
+    .main-panel
+      position static
+
+
+  &.cover
+    .main-container
+      position absolute
+      top 0
+      right 0
+      bottom 0
+      left 0
+
+
+  &.cover
+    .drop-shadow
+      position static
+      width 100%
+

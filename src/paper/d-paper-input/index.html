@@ -1,0 +1,58 @@
+<index: element="d-paper-input">
+
+<!--
+`paper-input` is a single- or multi-line text field where user can enter input.
+It can optionally have a label.
+
+Example:
+
+    <paper-input label="Your Name"></paper-input>
+    <paper-input multiline label="Enter multiple lines here"></paper-input>
+
+Theming
+--------
+
+Set `CoreStyle.g.paperInput.focusedColor` and `CoreStyle.g.paperInput.invalidColor` to theme
+the focused and invalid states.
+
+-->
+<div class="d-paper-input" on-mousedown="{{downAction}}" on-mouseup="{{upAction}}">
+
+    <div class="floated -label{{if !floatingLabel}} hidden{{/if}}"><span class="floated-label-span">{{label}}</span></div>
+
+    <div class="container" on-transitionend="{{transitionEndAction}}" on-webkitTransitionEnd="{{transitionEndAction}}">
+
+      <div class="label"><span class="labelSpan">{{label}}</span></div>
+
+      <div class="input-container">
+
+        <div class="input-clone">
+          <span class="input-clone-cpan" aria-hidden="true">&nbsp;</span>
+        </div>
+
+        {{if multiline}}
+          <div class="min-input-height"></div>
+          <div class="max-input-height"></div>
+        {{/if}}
+
+        <d-core-input placeholder={{placeholder}} disabled={{disabled}} type={{type}} readonly={{readonly}} required={{required}} multiline={{multiline}} rows={{rows}} inputValue={{inputValue}} value={{value}} validate={{validate}} invalid={{invalid}}></d-core-input>
+
+      </div>
+
+      <div class="underline-container">
+        <div class="underline"></div>
+        <div class="underline-highlight focusedColor"></div>
+      </div>
+
+      <div class="caret">
+        <div class="caret-inner focused-color"></div>
+      </div>
+
+    </div>
+
+    <div class="error-container">
+      <div class="error" role="alert" aria-hidden="{{!invalid}}">{{error}}</div>
+      <div class="error-icon"></div>
+    </div>
+
+</div>

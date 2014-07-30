@@ -1,0 +1,62 @@
+.d-paper-tile
+  width 200px
+  height 100px
+  margin-left 5px
+  margin-top 5px
+  background $primary-color-1
+  display inline-block
+  position relative
+  border 0
+  text-align left
+  font inherit
+  outline none
+  border-radius 0
+  -webkit-user-select none
+  user-select none
+  cursor pointer
+  color $text-color-1
+  fill $text-color-1
+  &.raised-button .d-paper-ripple
+    color $primary-color-2
+  &.disabled
+    background #eaeaea !important
+    color #a8a8a8 !important
+    cursor auto
+    pointer-events none
+  .d-paper-shadow
+    border-radius 0
+  .shadow-container
+    border-radius inherit
+    overflow visible
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+  .d-paper-ripple
+    border-radius inherit
+    position absolute
+    top 0
+    left 0
+    bottom 0
+    right 0
+    color #d1d1d1
+    pointer-events none
+  .d-paper-ripple
+    canvas
+      top 0
+      left 0
+  .data-container
+    .d-core-icon
+      display inline-block
+      margin-right 10px
+    .name
+      display inline-block
+      position absolute
+      bottom 10px
+      left 10px
+      font-size 16px
+      font-weight 300
+      width 80%
+      color #fff
+      text-overflow ellipsis

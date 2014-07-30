@@ -1,0 +1,51 @@
+.d-paper-dialog
+  position: fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  z-index 10000
+  &.core-opened
+    .scrim
+      opacity 0.6
+  .scrim
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background-color black
+    opacity 0
+    /*transition opacity 0.2s*/
+
+  .container
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+    margin auto
+  .dialog-content
+    width 100%
+    height 100%
+    overflow hidden
+    position absolute
+    top 0
+    left 0
+    background $dialog-background-color
+  .main
+    height auto
+    -webkit-order 1
+    -ms-flex-order 1
+    order 1
+    padding 24px
+    overflow auto
+  .actions
+    -webkit-order 2
+    -ms-flex-order 2
+    order 2
+    padding 16px
+    position absolute
+    bottom 0
+    right 0
+    left 0

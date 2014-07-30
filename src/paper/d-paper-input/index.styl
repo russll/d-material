@@ -1,0 +1,225 @@
+.d-paper-input 
+  display inline-block
+  outline none
+  text-align inherit
+  color #757575
+
+.d-paper-input:hover
+  cursor text
+
+
+.container 
+  position relative
+
+
+.input-clone,
+.min-input-height,
+.max-input-height 
+  position absolute
+  top 0
+  left 0
+  visibility hidden
+  padding 0.5em 0
+
+
+.d-paper-input input,
+.d-paper-input textarea 
+  font inherit
+  color .000
+  padding 0
+  /* Important to use margin here so the margin remains visible
+   * when textarea scrolls internally. */
+  margin 0.5em 0
+  background-color transparent
+  border none
+  outline none
+  width 100%
+
+
+.d-paper-input textarea 
+  resize none
+
+
+.floated-label 
+  font-size 0.75em
+  background transparent
+  white-space nowrap
+
+.floated-label.hidden 
+  visibility hidden
+
+.floated-label.focused 
+  visibility visible
+
+
+.label 
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  width 100%
+  padding 0.5em 0
+  background transparent
+  -webkit-transform-origin 0% 0%
+  transform-origin 0% 0%
+
+.label.hidden 
+  display none
+
+.label.animating 
+  /* TODO transforms are unprefixed in M36/ Remove when stable. */
+  -webkit-transition -webkit-transform 0.3s cubic-bezier(0.2, 0, 0.03, 1)
+  transition transform 0.3s cubic-bezier(0.2, 0, 0.03, 1)
+
+
+.label-span 
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+  display inline-block
+  max-width 100%
+
+
+.error-container 
+  visibility hidden
+  display -webkit-flex
+  display flex
+  -webkit-align-items center
+  align-items center
+
+
+.d-paper-input.invalid .error-container 
+  visibility visible
+
+
+.error 
+  -webkit-flex 1
+  flex 1
+  font-size 0.75em
+  padding 0.5em 0
+
+
+.error-icon 
+  background-image url(error-100.png)
+  background-size 24px 24px
+  height 24px
+  width 24px
+
+
+
+@media (min-resolution 2dppx) 
+  .error-icon 
+    background-image url(error-200.png)
+    background-size 24px 24px
+  
+
+
+.underline-container 
+  position absolute
+  left 0
+  right 0
+  bottom -1px
+
+
+.d-paper-input.multiline .underline-container 
+  bottom auto
+
+
+.d-paper-input.multiline .underline-container.animating 
+  -webkit-transition top 0.2s ease-in
+  transition top 0.2s ease-in
+
+
+.underline 
+  height 1px
+  background #757575
+  border-bottom-color #757575
+
+
+.d-paper-input.disabled .underline 
+  border-bottom 1px dashed
+  height 0px
+  background transparent
+
+
+.underline-highlight 
+  position absolute
+  left 0
+  right 0
+  bottom 0
+  height 2px
+  -webkit-transform scale(0,2)
+  transform scale(0,2)
+
+.underline-highlight.pressed 
+  -webkit-transform scale(0.1,2)
+  transform scale(0.1,2)
+  /* TODO transforms are unprefixed in M36/ Remove when stable. */
+  -webkit-transition -webkit-transform 0.1s cubic-bezier(0.2, 0, 0.03, 1)
+  transition transform 0.3s cubic-bezier(0.2, 0, 0.03, 1)
+
+.underline-highlight.animating 
+  /* TODO transforms are unprefixed in M36/ Remove when stable. */
+  -webkit-transition -webkit-transform 0.3s cubic-bezier(0.2, 0, 0.03, 1)
+  transition transform 0.3s cubic-bezier(0.2, 0, 0.03, 1)
+
+.underline-highlight.focused 
+  -webkit-transform scale(1)
+  transform scale(1)
+
+
+.caret 
+  display none
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  opacity 0
+  -webkit-transform-origin-x 0%
+  transform-origin-x 0%
+  -webkit-transform scaleX(1) translateX(10%)
+  transform scaleX(1) translateX(10%)
+
+.caret.animating 
+  display block
+   /* TODO transforms are unprefixed in M36/ Remove when stable. */
+  -webkit-transition -webkit-transform 0.2s ease-out, opacity 0.2s ease-out
+  transition transform 0.3s cubic-bezier(0.2, 0, 0.03, 1)
+
+.caret.focused 
+  display block
+  opacity 0.75
+  -webkit-transform scaleX(0) translateX(0)
+  transform scaleX(0) translateX(0)
+
+.caret-inner 
+  position absolute
+  top 0.6em
+  left 0
+  height 1.2em
+  width 25%
+
+
+
+.label.focused,
+.floated-label.focused 
+  color $focused-color-1
+
+
+.underline-highlight.focused,
+.caretInner 
+  background-color $focused-color-1
+
+
+.error,
+.d-paper-input.invalid .label.focused,
+.d-paper-input.invalid .floated-label.focused 
+  color $invalid-color-1
+
+.d-paper-input.invalid .underline-highlight.focused,
+.d-paper-input.invalid .caretInner 
+  background-color $invalid-color-1
+
+

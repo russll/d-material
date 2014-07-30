@@ -1,0 +1,55 @@
+<index: element="d-paper-radio-button">
+<!--
+`paper-radio-button` is a button that can be either checked or unchecked.
+User can tap the radio button to check it.  But it cannot be unchecked by
+tapping once checked.
+
+Use `paper-radio-group` to group a set of radio buttons.  When radio buttons
+are inside a radio group, only one radio button in the group can be checked.
+
+Example:
+
+    <paper-radio-button></paper-radio-button>
+    
+Styling radio button:
+
+To change the ink color for checked state:
+
+    paper-radio-button::shadow #ink[checked] {
+      color: #4285f4;
+    }
+    
+To change the radio checked color:
+    
+    paper-radio-button::shadow #onRadio {
+      background-color: #4285f4;
+    }
+    
+To change the ink color for unchecked state:
+
+    paper-radio-button::shadow #ink {
+      color: #b5b5b5;
+    }
+    
+To change the radio unchecked color:
+    
+    paper-radio-button::shadow #offRadio {
+      border-color: #b5b5b5;
+    }
+
+-->
+
+<div class="d-paper-radio-button{{if checked == 'true'}} checked{{/if}}{{if disabled == 'true'}} disabled{{/if}}" role="radio" tabindex="0" aria-checked="{{checked}}" aria-label="{{label}}" on-tap="tap($event)">
+  
+  <div class="radio-container" class="{{if label}}labeled{{/if}}">
+  
+    <div class="off-radio"></div>
+    <div class="on-radio{{if checked == 'true'}} fill{{/if}}"></div>
+    
+    <d-paper-ripple circle="true" recenteringTouch="true" checked="{{!checked}}"></d-paper-ripple>
+    
+  </div>
+  
+  <div class="radio-label{{if !label}} hidden{{/if}}" aria-hidden="true">{{label}}{{@content}}</div>
+  
+</div>

@@ -1,0 +1,16 @@
+.d-paper-ripple
+  display block
+  position relative
+  width 100%
+  height 100%
+  overflow hidden
+  .canvas
+    pointer-events none
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+  &.circle
+    canvas
+      border-radius 50%

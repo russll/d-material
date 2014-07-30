@@ -1,0 +1,64 @@
+<index: element="d-paper-toggle-button">
+<!--
+`paper-toggle-button` provides a ON/OFF switch that user can toggle the state
+by tapping or by dragging the swtich.
+
+Example:
+
+    <paper-toggle-button></paper-toggle-button>
+
+Styling toggle button:
+
+To change the ink color for checked state:
+
+    paper-toggle-button::shadow paper-radio-button::shadow #ink[checked] {
+      color: #4285f4;
+    }
+    
+To change the radio checked color:
+    
+    paper-toggle-button::shadow paper-radio-button::shadow #onRadio {
+      background-color: #4285f4;
+    }
+    
+To change the bar color for checked state:
+
+    paper-toggle-button::shadow #toggleBar[checked] {
+      background-color: #4285f4;
+    }
+    
+To change the ink color for unchecked state:
+
+    paper-toggle-button::shadow paper-radio-button::shadow #ink {
+      color: #b5b5b5;
+    }
+    
+To change the radio unchecked color:
+    
+    paper-toggle-button::shadow paper-radio-button::shadow #offRadio {
+      border-color: #b5b5b5;
+    }
+
+To change the bar color for unchecked state:
+
+    paper-toggle-button::shadow #toggleBar {
+      background-color: red;
+    }
+
+@group Paper Elements
+@element paper-toggle-button
+@homepage github.io
+-->
+
+<div class="d-paper-toggle-button{{if checked == 'true'}} checked{{/if}}" touch-action="pan-y" role="button" aria-pressed="{{checked}}" tabindex="0">
+
+  <div class="toggle-container{{if checked == 'true'}} checked{{/if}}">
+  
+    <div as="toggleBar" class="toggle-bar{{if checked == 'true'}} checked{{/if}}"></div>
+    <div as="toggleRadio" class="toggle-radio{{if dragging == 'true'}} dragging{{/if}}{{if checked == 'true'}} checked{{/if}}" on-trackstart="trackStart($event)" on-track="track($event)" on-trackend="trackEnd($event)">
+
+        <d-paper-radio-button toggles="true"></d-paper-radio-button>
+
+    </div>
+  </div>
+</div>

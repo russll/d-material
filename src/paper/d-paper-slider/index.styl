@@ -1,0 +1,183 @@
+.d-paper-slider 
+  display inline-block
+  width 200px
+  cursor default
+
+
+  .slider-container
+    position relative
+    width calc(100% - 32px)
+    height 32px
+
+
+  &.editable .slider-container
+    float left
+    width calc(100% - 72px)
+
+  .slider-bar
+    position absolute
+    top 15px
+    left 16px
+    height 2px
+    width 100%
+    padding 8px 0
+    margin -8px 0
+
+
+  .slider-markers
+    position absolute
+    top 15px
+    left 15px
+    height 2px
+    width calc(100% + 2px)
+    box-sizing border-box
+    pointer-events none
+    /* background-image -webkit-linear-gradient(0deg, #ccc, #ccc 1px, transparent 1px, transparent)
+    background-size 10% */
+
+
+  .slider-markers:after, .slider-marker:after
+    content ""
+    display block
+    width 2px
+    height 2px
+    border-radius 50%
+    background-color black
+
+
+  .slider-bar .active-progress
+    background-color #3f51b5
+
+
+  .slider-knob
+    position absolute
+    left 0
+    top 0
+    width 32px
+    height 32px
+
+
+  .slider-knob.transiting
+    transition left 0.08s ease
+
+
+  .slider-knob:focus
+    outline none
+
+
+  .slider-knob.dragging
+    transition none
+
+
+  .slider-knob.snaps.dragging
+    transition -webkit-transform 0.08s ease
+    transition transform 0.08s ease
+
+
+  .slider-knob-inner
+    width 12px
+    height 12px
+    box-sizing border-box
+    -moz-box-sizing border-box
+    border-radius 50%
+    background-color #3f51b5
+    /* FIXME(ffu) can't use the following. https//github.com/Polymer/platform/issues/53 */
+    /* transition-property height, width, background-color, border
+    transition-duration 0.1s
+    transition-timing-function ease */
+    transition height 0.18s ease, width 0.18s ease, background-color 0.28s ease, border 0.18s ease
+
+
+  .slider-knob.expand:not(.pin) > .slider-knob-inner
+    width 100%
+    height 100%
+    -webkit-transform translateZ(0)
+    transform translateZ(0)
+
+
+  .slider-knob.ring > .slider-knob-inner
+    background-color #fff
+    border 2px solid #c8c8c8
+
+
+  .slider-knob-inner:before
+    background-color #3f51b5
+
+
+  .slider-knob.pin > .slider-knob-inner:before
+    content ""
+    position absolute
+    top 0
+    left 0
+    width 26px
+    height 26px
+    margin-left 3px
+    border-radius 50% 50% 50% 0
+    -webkit-transform rotate(-45deg) scale(0) translate(0)
+    transform rotate(-45deg) scale(0) translate(0)
+
+
+  .slider-knob-inner:before, .slider-knob-inner:after
+    transition -webkit-transform .2s ease, background-color .18s ease
+    transition transform .2s ease, background-color .18s ease
+
+
+  .slider-knob.pin.ring > .slider-knob-inner:before
+    background-color #c8c8c8
+
+
+  .slider-knob.pin.expand > .slider-knob-inner:before
+    -webkit-transform rotate(-45deg) scale(1) translate(17px, -17px)
+    transform rotate(-45deg) scale(1) translate(17px, -17px)
+
+
+  .slider-knob.pin > .slider-knob-inner:after
+    /* FIXME(ffu) add dummy quotes to workaround https//github.com/Polymer/platform/issues/57 */
+    content attr(value) ""
+    position absolute
+    top 0
+    left 0
+    width 32px
+    height 26px
+    text-align center
+    color #fff
+    font-size 10px
+    -webkit-transform scale(0) translate(0)
+    transform scale(0) translate(0)
+
+
+  .slider-knob.pin.expand > .slider-knob-inner:after
+    -webkit-transform scale(1) translate(0, -17px)
+    transform scale(1) translate(0, -17px)
+
+
+  .slider-input
+    width 40px
+    height 32px
+    float right
+
+
+  .slider-input input
+    /* FIXME(ffu) should one be able set text-align directly on paper-input? */
+    text-align center
+
+
+  /* disabled state */
+  &.disabled .slider-container
+    pointer-events none
+
+
+  &.disabled
+    pointer-events none
+
+
+  &.disabled .slider-knob > .slider-knob-inner
+    width 12px
+    height 12px
+    background-color #c8c8c8
+    border 2px solid #fff
+
+
+  &.disabled .slider-container > .slider-bar .active-progress
+    background-color #c8c8c8
+

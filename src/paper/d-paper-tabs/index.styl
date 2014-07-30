@@ -1,0 +1,47 @@
+.d-paper-tabs 
+  display block
+  position relative
+  font-size 14px
+  font-weight 500
+  height 48px
+  overflow hidden
+
+  
+  .tabs-container 
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    white-space nowrap
+  
+  
+  .selection-bar 
+    position absolute
+    height 2px
+    bottom 0
+    left 0
+    width 0
+    background-color #ffff8d
+    transition width, left
+  
+  
+  .selection-bar.hidden 
+    display hidden
+  
+  
+  .selection-bar.expand 
+    transition-duration 0.15s
+    transition-timing-function cubic-bezier(0.4, 0.0, 1, 1)
+  
+  
+  .selection-bar.contract 
+    transition-duration 0.1s
+    transition-timing-function cubic-bezier(0.0, 0.0, 0.2, 1)
+  
+  
+  .tabs-container > *:not(.selection-bar)
+    -ms-flex 1
+    -webkit-flex 1
+    flex 1
+  

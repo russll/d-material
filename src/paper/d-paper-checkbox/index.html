@@ -1,0 +1,55 @@
+<index: element="d-paper-checkbox">
+<!--
+`paper-checkbox` is a button that can be either checked or unchecked.  User
+can tap the checkbox to check or uncheck it.  Usually you use checkboxes
+to allow user to select multiple options from a set.  If you have a single
+ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
+instead.
+
+Example:
+
+    <paper-checkbox></paper-checkbox>
+
+    <paper-checkbox checked></paper-checkbox>
+    
+Styling checkbox:
+
+To change the ink color for checked state:
+
+    paper-checkbox::shadow #ink[checked] {
+      color: #4285f4;
+    }
+    
+To change the checkbox checked color:
+
+    paper-checkbox::shadow #checkbox.checked {
+      border-color: #4285f4;
+    }
+
+To change the ink color for unchecked state:
+
+    paper-checkbox::shadow #ink {
+      color: #b5b5b5;
+    }
+
+To change the checbox unchecked color:
+
+    paper-checkbox::shadow #checkbox {
+      border-color: #b5b5b5;
+    }
+
+-->
+
+<div class="d-paper-checkbox{{if checked}} checked{{/if}}{{if box}} box{{/if}}{{if !checked}} unchecked{{/if}}{{if !checkmark}} checkmark{{/if}}{{if disabled}} disabled{{/if}}" role="checkbox" on-mousedown="downAction($event)" on-mouseup="upAction($event)" on-transitionend="checkboxAnimationEnd($event)">
+
+  <div class="checkbox-container{{if !label}} labeled{{/if}}" >
+
+      <d-paper-ripple circle recenteringTouch checked="{{!checked}}"></d-paper-ripple>
+
+      <div class="checkbox" on-transitionend="checkboxAnimationEnd($event)" on-webkitAnimationEnd="checkboxAnimationEnd($event)"></div>
+    
+  </div>
+  
+  <div class="checkbox-label{{if !label}}hidden{{/if}}">{{label}}{{@content}}</div>
+
+</div>
