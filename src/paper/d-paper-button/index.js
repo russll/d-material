@@ -168,18 +168,7 @@ PaperButton.prototype.downAction = function(event) {
     } else {
         this.model.set('active', true);
     }
-}
-
-// Pulling up the context menu for an item should focus it; but we need to
-// be careful about how we deal with down/up events surrounding context
-// menus. The up event typically does not fire until the context menu
-// closes: so we focus immediately.
-//
-// This fires _after_ downAction.
-PaperButton.prototype.contextMenuAction = function(e) {
-    // Note that upAction may fire _again_ on the actual up event.
-    this.upAction(e);
-    this.focusAction();
+    this.emit('mousedown', event);
 }
 
 PaperButton.prototype.upAction = function() {
@@ -188,6 +177,7 @@ PaperButton.prototype.upAction = function() {
     if (!this.model.get('isToggle')) {
         this.model.set('active', false);
     }
+    this.emit('mouseup', event);
 }
 
 PaperButton.prototype.focusAction = function() {
@@ -200,4 +190,22 @@ PaperButton.prototype.focusAction = function() {
 
 PaperButton.prototype.blurAction = function() {
     this.model.set('focused', false);
+}
+PaperButton.prototype.clickAction = function(event) {
+    this.emit('click', event);
+}
+PaperButton.prototype.dblClickAction = function(event) {
+    this.emit('dblclick', event);
+}
+
+// Pulling up the context menu for an item should focus it; but we need to
+// be careful about how we deal with down/up events surrounding context
+// menus. The up event typically does not fire until the context menu
+// closes: so we focus immediately.
+//
+// This fires _after_ downAction.
+PaperButton.prototype.contextMenuAction = function(e) {
+    // Note that upAction may fire _again_ on the actual up event.
+    this.upAction(e);
+    this.focusAction();
 }

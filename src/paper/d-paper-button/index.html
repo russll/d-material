@@ -38,7 +38,7 @@ To style the background, text and hover color, apply the `background` and
 
 -->
 
-<div as="wrapper" class="d-paper-button{{if raised}} raised-button{{/if}}{{if fab}} fab{{/if}} {{class}}" aria-label="{{label}}" tabindex="{{tabindex}}" tooltip="{{label}}" role="button" on-mousedown="downAction($event)" on-mouseup="upAction($event)" on-focus="focusAction($event)" on-blur="blurAction($event)" on-contextmenu="contextMenuAction($event)" style="z-index: {{z}};{{if width}}width: {{width}};{{/if}}{{if height}}height: {{height}};{{/if}}">
+<div as="wrapper" class="d-paper-button{{if raised}} raised-button{{/if}}{{if fab}} fab{{/if}} {{class}}" aria-label="{{label}}" tabindex="{{tabindex}}" tooltip="{{label}}" role="button" on-click="clickAction($event)" on-dblclick="dblClickAction($event)" on-mousedown="downAction($event)" on-mouseup="upAction($event)" on-focus="focusAction($event)" on-blur="blurAction($event)" on-contextmenu="contextMenuAction($event)" style="z-index: {{z}};{{if width}}width: {{width}};{{/if}}{{if height}}height: {{height}};{{/if}}">
 
     {{if raised}}
       <div class="shadow-container fit">
