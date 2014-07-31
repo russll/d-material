@@ -1,6 +1,6 @@
 {
   "name": "d-material",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "pack of derbyjs components for quickly creation material design sites",
   "main": "index.js",
   "scripts": {
