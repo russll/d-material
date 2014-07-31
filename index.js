@@ -1,4 +1,4 @@
-//app.use(module, { components: [ 'd-paper-button']})
+//app.use(require('d-material'))
 
 module.exports = run;
 
