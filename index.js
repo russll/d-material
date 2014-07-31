@@ -39,5 +39,5 @@ function run(app, options){
 //    app.component(require('./src/core/d-core-submenu/index.js'));
     app.component(require('./src/core/d-core-toolbar/index.js'));
 
-    app.loadStyles('./index.styl'));
+    app.loadStyles('./index.styl');
 }
