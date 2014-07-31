@@ -28,14 +28,12 @@ To change the sliding bar color:
 
 -->
 
-<import: src="../core/d-core-selector/d-core-selector.html">
-
 <div class="d-paper-tabs" role="tablist">
 
   <div class="tabs-container horizontal layout">
   
-    <d-core-selector></d-core-selector>
-    <div class="selection-bar {{if nobar}}hidden{{/if}}{{if expand}}expand{{/if}}" style="width:{{width}}%;left:{{left}}%;" on-transitionend="{{barTransitionEnd}}"></div>
+    <d-core-selector>{{@content}}</d-core-selector>
+    <div class="selection-bar {{if nobar}}hidden{{/if}}{{if expand}}expand{{/if}}" style="width:{{width}};left:{{left}};" on-transitionend="barTransitionEnd()"></div>
     
   </div>
 </div>

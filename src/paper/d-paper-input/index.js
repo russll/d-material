@@ -154,10 +154,7 @@ Component.prototype.downAction = function (e) {
     this.$.underlineHighlight.classList.remove('focused');
     this.underlineAsync = this.async(function () {
         this.$.underlineHighlight.classList.add('pressed');
-    }
-    null, 200
-    )
-    ;
+    });
 
     // No caret animation if there is text in the input.
     if (!this.inputValue) {
@@ -205,10 +202,7 @@ Component.prototype.upAction = function (e) {
         this.$.caret.classList.add('animating');
         this.async(function () {
             this.$.caret.classList.add('focused');
-        }
-        null, 100
-    )
-        ;
+        },null, 100);
     }
 
     if (this.floatingLabel) {
@@ -251,10 +245,7 @@ Component.prototype.transitionEndAction = function (e) {
         this.async(function () {
             this.$.underlineHighlight.classList.remove('animating');
             this.$.caret.classList.remove('animating');
-        }
-        null, 100
-    )
-        ;
+        }, null, 100);
 
     } else {
 

@@ -49,27 +49,26 @@ To change the slider secondary progress bar color:
 
 -->
 
-<div class="d-paper-slider{{if snaps == 'true'}} snaps{{/if}}{{if pin == 'true'}} pin{{/if}}{{if disabled == 'true'}} disabled{{/if}}{{if editable == 'true'}} editable{{/if}}">
+<div class="d-paper-slider{{if snaps}} snaps{{/if}}{{if pin}} pin{{/if}}{{if disabled}} disabled{{/if}}{{if editable}} editable{{/if}}">
 
-  <div class="slider-container" touch-action="pan-y" on-keydown="{{keydown}}">
+  <div class="slider-container" touch-action="pan-y" on-keydown="keydown()">
   
     <d-paper-progress class="slider-bar" aria-hidden="true" min="{{min}}" max="{{max}}" value="{{immediateValue}}" secondaryProgress="{{secondaryProgress}}"
-        on-down="{{bardown}}" on-up="{{resetKnob}}" 
-        on-trackstart="{{trackStart}}" on-track="{{track}}" on-trackend="{{trackEnd}}"></d-paper-progress>
+        on-down="bardown()" on-up="resetKnob()" 
+        on-trackstart="trackStart()" on-track="track()" on-trackend="trackEnd()"></d-paper-progress>
     
-    {{if snaps == 'true' && disabled != 'true'}}
-      <div class="slider-markers" horizontal layout>
+    {{if snaps && !disabled}}
+      <div class="slider-markers horizontal layout">
         {{each markers as #marker, #index}}
           <div class="slider-marker flex"></div>
-        </template>
+        {{/each}}
       </div>
     {{/if}}
     
-    <div class="slider-knob" class="{{if pin == 'true'}} pin{{/if}}{{if snaps == 'true'}} snaps{{/if}}"
-         center-justified{{if center == 'true'}} center{{/if}}{{if horizontal == 'true'}} horizontal{{/if}}{{if layout == 'true'}} layout{{/if}}
-        touch-action="none" on-down="{{expandKnob}}" on-up="{{resetKnob}}"
-        on-trackstart="{{trackStart}}" on-track="{{track}}" on-trackend="{{trackEnd}}"
-        on-transitionend="{{knobTransitionEnd}}"
+    <div class="slider-knob {{if pin}} pin{{/if}}{{if snaps}} snaps{{/if}} center-justified{{if center}} center{{/if}}{{if horizontal}} horizontal{{/if}}{{if layout}} layout{{/if}}"
+        touch-action="none" on-down="expandKnob()" on-up="resetKnob()"
+        on-trackstart="trackStart()" on-track="track()" on-trackend="trackEnd()"
+        on-transitionend="knobTransitionEnd()"
         role="slider" aria-valuenow="{{value}}" aria-valuemin="{{min}}" aria-valuemax="{{max}}"
         aria-valuetext="{{value}}" tabindex="0">
         
@@ -79,8 +78,8 @@ To change the slider secondary progress bar color:
     
   </div>
   
-  <template if="{{editable}}">
-    <paper-input class="input" class="slider-input" value="{{immediateValue}}" validate="^[-+]?[0-9]*\.?[0-9]+$" disabled?="{{disabled}}" on-change="{{inputChange}}"></paper-input>
-  </template>
+  {{if editable}}">
+    <d-paper-input class="input" class="slider-input" value="{{immediateValue}}" validate="^[-+]?[0-9]*\.?[0-9]+$" disabled="{{disabled}}" on-change="inputChange()"></d-paper-input>
+  {{/if}}
 
 </div>

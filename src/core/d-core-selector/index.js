@@ -1,7 +1,6 @@
 var selection = require('../d-core-selection/index.js');
 
-function Component() {
-}
+function Component() {}
 
 module.exports = Component;
 

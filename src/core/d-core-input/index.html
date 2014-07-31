@@ -58,13 +58,13 @@ Fired when the inputValue of this text input changes and fails validation.
 
 -->
 
-<div class="d-core-input{{if invalid}} invalid{{/if}}" on-focus="{{focusAction}}">
+<div class="d-core-input{{if invalid}} invalid{{/if}}" on-focus="focusAction()">
 
     {{if multiline}}
-      <textarea as="input" class="input{{if fit}} fit{{/if}}{{if disabled}} disabled{{/if}}" value="{{inputValue}}" rows="{{rows}}" placeholder="{{placeholder}}" required="{{required}}" readonly="{{readonly}}" aria-label="{{label || placeholder}}" aria-invalid="{{invalid}}" on-change="{{inputChangeAction}}" on-focus="{{inputFocusAction}}" on-blur="{{inputBlurAction}}"></textarea>
+      <textarea as="input" class="input{{if fit}} fit{{/if}}{{if disabled}} disabled{{/if}}" value="{{inputValue}}" rows="{{rows}}" placeholder="{{placeholder}}" required="{{required}}" readonly="{{readonly}}" aria-label="{{label || placeholder}}" aria-invalid="{{invalid}}" on-change="inputChangeAction()" on-focus="inputFocusAction()" on-blur="inputBlurAction()"></textarea>
     {{/if}}
 
     {{if !multiline}}
-      <input as="input" class="input{{if disabled}} disabled{{/if}}" value="{{inputValue}}" type="{{type}}" placeholder="{{placeholder}}" required="{{required}}" readonly="{{readonly}}" aria-label="{{label || placeholder}}" aria-invalid="{{invalid}}" on-change="{{inputChangeAction}}" on-focus="{{inputFocusAction}}" on-blur="{{inputBlurAction}}">
+      <input as="input" class="input{{if disabled}} disabled{{/if}}" value="{{inputValue}}" type="{{type}}" placeholder="{{placeholder}}" required="{{required}}" readonly="{{readonly}}" aria-label="{{label || placeholder}}" aria-invalid="{{invalid}}" on-change="inputChangeAction()" on-focus="inputFocusAction()" on-blur="inputBlurAction()">
     {{/if}}
 </div>

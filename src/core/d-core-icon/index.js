@@ -1,4 +1,4 @@
-var derby = require('derby');
+//var derby = require('derby');
 var icons = require('./icons.js');
 
 function Component() {}

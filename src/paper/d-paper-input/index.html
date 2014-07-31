@@ -16,11 +16,11 @@ Set `CoreStyle.g.paperInput.focusedColor` and `CoreStyle.g.paperInput.invalidCol
 the focused and invalid states.
 
 -->
-<div class="d-paper-input" on-mousedown="{{downAction}}" on-mouseup="{{upAction}}">
+<div class="d-paper-input" on-mousedown="downAction()" on-mouseup="upAction()">
 
-    <div class="floated -label{{if !floatingLabel}} hidden{{/if}}"><span class="floated-label-span">{{label}}</span></div>
+    <div class="floated-label{{if !floatingLabel}} hidden{{/if}}"><span class="floated-label-span">{{label}}</span></div>
 
-    <div class="container" on-transitionend="{{transitionEndAction}}" on-webkitTransitionEnd="{{transitionEndAction}}">
+    <div class="container" on-transitionend="transitionEndAction()" on-webkitTransitionEnd="transitionEndAction()">
 
       <div class="label"><span class="labelSpan">{{label}}</span></div>
 

@@ -12,7 +12,7 @@ Example:
 
 -->
 
-<div class="paper-menu-button {{transition.base}}{{if opened}} {{transition.opened}}{{/if}} {{if !opened}}{{transition.base + '-' + transition.type}}{{/if}} {{class}}" opened="{{opened}}" on-mousedown="{{downAction}}" on-mouseup="{{upAction}}">
+<div class="paper-menu-button {{transition.base}}{{if opened}} {{transition.opened}}{{/if}} {{if !opened}}{{transition.base + '-' + transition.type}}{{/if}} {{class}}" opened="opened()" on-mousedown="downAction()" on-mouseup="upAction()">
     <div class="overlay">
       <d-paper-shadow z="0" hasPosition></d-paper-shadow>
       <div class="paper-menu-button-overlay-ink"></div>
