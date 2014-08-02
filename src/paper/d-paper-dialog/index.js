@@ -71,7 +71,6 @@ Component.prototype.init = function () {
 }
 
 Component.prototype.transitionEndAction = function(event){
-    console.log('end')
 }
 
 /**
@@ -79,7 +78,6 @@ Component.prototype.transitionEndAction = function(event){
  * @method toggle
  */
 Component.prototype.toggle = function () {
-    console.log('toggle')
     this.model.set('opened', !this.model.get('opened'));
 }
 
@@ -89,8 +87,7 @@ Component.prototype.toggle = function () {
  * @method open
  */
 Component.prototype.open = function () {
-    console.log('open')
-    this.model.set('opened', false);
+    this.model.set('opened', true);
 }
 
 /**
@@ -99,6 +96,5 @@ Component.prototype.open = function () {
  * @method close
  */
 Component.prototype.close = function () {
-    console.log('close')
     this.model.set('opened', false);
 }

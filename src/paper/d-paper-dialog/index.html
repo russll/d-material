@@ -1,4 +1,4 @@
-<index: element="d-paper-dialog" attributes="title actions">
+<index: element="d-paper-dialog">
 <!--
 Provides a dialog overlay.
 
@@ -28,18 +28,12 @@ Transition examples:
     <paper-dialog heading="Title for dialog" transition="paper-transition-bottom">
 
 -->
-<div as="overlay" class="d-paper-dialog overlay {{transition.base}}{{if opened}} {{transition.opened}}{{/if}} {{if !opened}}{{transition.base + '-' + transition.type}}{{/if}} {{class}}" opened="{{opened}}" role="dialog" aria-label="{{heading}}" on-click="toggle($event)">
-    <div class="scrim{{if opened}} core-opened{{/if}}"></div>
+<div as="overlay" class="d-paper-dialog overlay {{transition.base}}{{if opened}} {{transition.opened}}{{/if}} {{if !opened}}{{transition.base + '-' + transition.type}}{{/if}} {{class}}" opened="{{opened}}" role="dialog" aria-label="{{heading}}">
+    <div class="scrim{{if opened}} core-opened{{/if}}" on-click="close($event, $element)"></div>
     <div class="container layout vertical" style="width: {{width}}; height: {{height}};">
         <d-paper-shadow z="3" hasPosition="true"></d-paper-shadow>
         <div class="dialog-content">
-            <div class="main flex auto">
-                {{@title}}
-                {{@content}}
-            </div>
-            <div class="actions layout horizontal">
-                {{@actions}}
-            </div>
+            {{@content}}
         </div>
     </div>
 </div>
