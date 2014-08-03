@@ -1,5 +1,5 @@
 <index: element="d-paper-tile">
-    <div as="wrapper" class="d-paper-tile{{if raised}} raised-button{{/if}} {{class}}" on-dblclick="open(item, $element, $event)" on-mousedown="downAction($event)" on-mouseup="upAction($event)" on-mouseenter="mouseEnterAction($event)" on-mouseleave="mouseLeaveAction($event)" on-focus="focusAction($event)" on-blur="blurAction($event)" on-contextmenu="contextMenuAction($event)" style="z-index: {{z}};">
+    <div as="wrapper" class="d-paper-tile{{if raised}} raised-button{{/if}} {{class}}" on-dblclick="dblclickAction($event, $element)" on-click="clickAction($event, $element)" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)" on-mouseenter="mouseEnterAction($event, $element)" on-mouseleave="mouseLeaveAction($event, $element)" on-focus="focusAction($event, $element)" on-blur="blurAction($event, $element)" on-contextmenu="contextMenuAction($event, $element)" style="z-index: {{z}};">
         {{if raised}}
             <div class="shadow-container fit">
                 <d-paper-shadow z="{{z}}" splash="{{splash}}" animated="{{animated}}" borderRadius="{{borderRadius}}"></d-paper-shadow>

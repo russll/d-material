@@ -208,3 +208,11 @@ Component.prototype.mouseEnterAction = function(event) {
 Component.prototype.mouseLeaveAction = function(event) {
     this.model.set('hover', false);
 }
+
+Component.prototype.clickAction = function(event, element) {
+    this.emit('click', event, element, this.model.get('item'));
+}
+
+Component.prototype.dblclickAction = function(event, element) {
+    this.emit('dblclick', event, element, this.model.get('item'));
+}
