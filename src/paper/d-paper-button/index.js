@@ -191,11 +191,11 @@ PaperButton.prototype.focusAction = function() {
 PaperButton.prototype.blurAction = function() {
     this.model.set('focused', false);
 }
-PaperButton.prototype.clickAction = function(event) {
-    this.emit('click', event);
+PaperButton.prototype.clickAction = function(event, element) {
+    this.emit('click', event, element, this.model.get('item'));
 }
-PaperButton.prototype.dblClickAction = function(event) {
-    this.emit('dblclick', event);
+PaperButton.prototype.dblClickAction = function(event, element) {
+    this.emit('dblclick', event, element, this.model.get('item'));
 }
 
 // Pulling up the context menu for an item should focus it; but we need to
