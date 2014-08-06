@@ -4,10 +4,11 @@ function Component() {}
 
 module.exports = Component;
 
+Component.prototype = new selection();
+
 Component.prototype.view = __dirname;
 
 Component.prototype.init = function () {
-    this.selection = new selection(this.model);
 
     /**
      * Gets or sets the selected element.  Default to use the index
@@ -50,6 +51,7 @@ Component.prototype.init = function () {
      * @default false
      */
     this.model.setNull('multi', false);
+    this.model.setNull('selection', []);
 
     /**
      * Specifies the attribute to be used for "selected" attribute.
@@ -67,7 +69,7 @@ Component.prototype.init = function () {
      * @type string
      * @default 'core-selected'
      */
-    this.model.setNull('selectedClass:', 'core-selected');
+    this.model.setNull('selectedClass', 'core-selected');
 
     /**
      * Specifies the property to be used to set on the selected element
@@ -167,93 +169,104 @@ Component.prototype.init = function () {
      * @default false
      */
     this.model.setNull('notap', false);
-
-    this.model.on('all', 'selection', (function (path, event, value) {
-        this.selectedChanged();
-    }).bind(this));
 }
 
 Component.prototype.create = function () {
-    this.activateListener = this.activateHandler.bind(this);
-    this.observer = new MutationObserver(this.updateSelected.bind(this));
-    if (!this.target) {
-        this.target = this;
-    }
-}
-
-Component.prototype.targetChanged = function (old) {
-    if (old) {
-        this.removeListener(old);
-        this.observer.disconnect();
-        this.clearSelection();
-    }
-    if (this.target) {
-        this.addListener(this.target);
-        this.observer.observe(this.target, {childList: true});
+    this.model.on('all', 'selected', (function (path, event, value) {
+        
         this.updateSelected();
-    }
+    }).bind(this));
+    this.model.on('all', 'selection', (function (path, event, value) {
+        
+        this.selectionSelect(value);
+    }).bind(this));
+    this.model.on('all', 'selectedItem', (function (path, event, value) {
+//        if (this.model.get('selectedItem')) {
+//            var t = this.model.get('selectedItem').templateInstance;
+//            this.model.set('selectedModel', t ? t.model : undefined);
+//        } else {
+//            this.model.set('selectedModel', null);
+//        }
+        this.model.set('selectedIndex', this.model.get('selectedItem') ?
+            parseInt(this.valueToIndex(this.model.get('selected'))) : -1);
+    }).bind(this));
 }
 
-Component.prototype.selectedChanged = function () {
-    this.updateSelected();
+Component.prototype.getItems = function () {
+    var nodes = this.model.get('itemsSelector') ?
+        this.wrapper.querySelectorAll(this.model.get('itemsSelector')) :
+        this.wrapper.children;
+    return nodes;
 }
 
-Component.prototype.updateSelected = function () {
+Component.prototype.selection = function () {
+    return this.getSelection();
+
+}
+
+Component.prototype.getSelected = function () {
+    return this.model.get('selected');
+
+}
+
+//!!!
+Component.prototype.updateSelected = function() {
     this.validateSelected();
-    if (this.multi) {
+    if (this.model.get('multi')) {
         this.clearSelection();
-        this.selected && this.selected.forEach(function (s) {
+        
+        this.model.get('selected') && this.model.get('selected').forEach(function(s) {
+            
             this.valueToSelection(s);
         }, this);
     } else {
-        this.valueToSelection(this.selected);
+        this.valueToSelection(this.model.get('selected'));
     }
 }
 
-Component.prototype.validateSelected = function () {
-    // convert to an array for multi-selection
-    if (this.multi && !Array.isArray(this.selected) &&
-        this.selected !== null && this.selected !== undefined) {
-        this.selected = [this.selected];
+Component.prototype.validateSelected = function() {
+    if (this.model.get('multi') && !Array.isArray(this.model.get('selected')) &&
+        this.model.get('selected') !== null && this.model.get('selected') !== undefined) {
+        this.model.set('selected', [this.model.get('selected')]);
     }
 }
 
-Component.prototype.clearSelection = function () {
-    if (this.multi) {
-        this.selection.slice().forEach(function (s) {
-            this.$.selection.setItemSelected(s, false);
+Component.prototype.clearSelection = function() {
+    if (this.model.get('multi')) {
+        
+        this.selection().forEach(function(s) {
+            this.setItemSelected(s, false);
         }, this);
     } else {
-        this.$.selection.setItemSelected(this.selection, false);
+        this.setItemSelected(this.selection()[0], false);
     }
-    this.selectedItem = null;
-    this.$.selection.clear();
+    this.model.set('selectedItem', null);
+    this.clear();
 }
 
-Component.prototype.valueToSelection = function (value) {
+Component.prototype.valueForNode = function(node) {
+    
+    
+    
+    return node[this.model.get('valueattr')];
+}
+
+Component.prototype.valueToSelection = function(value) {
+    
+    
     var item = (value === null || value === undefined) ?
-        null : this.items[this.valueToIndex(value)];
-    this.$.selection.select(item);
+        null : this.getItems()[this.valueToIndex(value)];
+    
+    this.select(item);
 }
 
-Component.prototype.updateSelectedItem = function () {
-    this.selectedItem = this.selection;
+Component.prototype.updateSelectedItem = function() {
+    this.model.set('selectedItem', this.selection());
 }
 
-Component.prototype.selectedItemChanged = function () {
-    if (this.selectedItem) {
-        var t = this.selectedItem.templateInstance;
-        this.selectedModel = t ? t.model : undefined;
-    } else {
-        this.selectedModel = null;
-    }
-    this.selectedIndex = this.selectedItem ?
-        parseInt(this.valueToIndex(this.selected)) : -1;
-}
-
-Component.prototype.valueToIndex = function (value) {
+Component.prototype.valueToIndex = function(value) {
     // find an item with value == value and return it's index
-    for (var i = 0, items = this.items, c; (c = items[i]); i++) {
+    for (var i=0, items=this.model.get('items'), c; (c=items[i]); i++) {
         if (this.valueForNode(c) == value) {
             return i;
         }
@@ -262,69 +275,71 @@ Component.prototype.valueToIndex = function (value) {
     return value;
 }
 
-Component.prototype.valueForNode = function (node) {
-    return node[this.valueattr] || node.getAttribute(this.valueattr);
-}
-
+//!!!
 // events fired from <core-selection> object
-Component.prototype.selectionSelect = function (e, detail) {
+Component.prototype.selectionSelect = function(detail) {
+    
+    
     this.updateSelectedItem();
     if (detail.item) {
         this.applySelection(detail.item, detail.isSelected);
     }
+    
 }
 
-Component.prototype.applySelection = function (item, isSelected) {
-    if (this.selectedClass) {
-        item.classList.toggle(this.selectedClass, isSelected);
+Component.prototype.applySelection = function(item, isSelected) {
+    
+    
+    
+    if (this.model.get('selectedClass')) {
+        item.classList.toggle(this.model.get('selectedClass'), isSelected);
     }
-    if (this.selectedProperty) {
-        item[this.selectedProperty] = isSelected;
+    if (this.model.get('selectedProperty')) {
+        item[this.model.get('selectedProperty')] = isSelected;
     }
-    if (this.selectedAttribute && item.setAttribute) {
+    if (this.model.get('selectedAttribute') && item.setAttribute) {
         if (isSelected) {
-            item.setAttribute(this.selectedAttribute, '');
+            item.setAttribute(this.model.get('selectedAttribute'), '');
         } else {
-            item.removeAttribute(this.selectedAttribute);
+            item.removeAttribute(this.model.get('selectedAttribute'));
         }
     }
 }
-
+//!!!
 // event fired from host
-Component.prototype.activateHandler = function (e) {
-    if (!this.notap) {
-        var i = this.findDistributedTarget(e.target, this.items);
+Component.prototype.selectAction = function(event, element, data) {
+    if (!this.model.get('notap')) {
+        var i = this.findDistributedTarget(event.target, this.getItems());
         if (i >= 0) {
-            var item = this.items[i];
-            var s = this.valueForNode(item) || i;
-            if (this.multi) {
-                if (this.selected) {
+            var item = this.getItems()[i];
+            var s = data || i;
+            if (this.model.get('multi')) {
+                if (this.model.get('selected')) {
                     this.addRemoveSelected(s);
                 } else {
-                    this.selected = [s];
+                    this.model.push('selected', s);
                 }
             } else {
-                this.selected = s;
+                this.model.set('selected', s);
             }
-            this.asyncFire('core-activate', {item: item});
         }
     }
 }
 
-Component.prototype.addRemoveSelected = function (value) {
-    var i = this.selected.indexOf(value);
+Component.prototype.addRemoveSelected = function(value) {
+    var i = this.model.get('selected').indexOf(value);
     if (i >= 0) {
-        this.selected.splice(i, 1);
+        this.model.remove('selected', i, 1);
     } else {
-        this.selected.push(value);
+        this.model.push('selected', value);
     }
     this.valueToSelection(value);
 }
 
-Component.prototype.findDistributedTarget = function (target, nodes) {
+Component.prototype.findDistributedTarget = function(target, nodes) {
     // find first ancestor of target (including itself) that
     // is in nodes, if any
-    while (target && target != this) {
+    while (target && target != this.wrapper) {
         var i = Array.prototype.indexOf.call(nodes, target);
         if (i >= 0) {
             return i;

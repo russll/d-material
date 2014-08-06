@@ -182,8 +182,6 @@ PaperButton.prototype.upAction = function() {
 
 PaperButton.prototype.focusAction = function() {
     if (!this.model.get('pressed')) {
-        // Only render the "focused" state if the element gains focus due to
-        // keyboard navigation.
         this.model.set('focused', true);
     }
 }
@@ -198,13 +196,7 @@ PaperButton.prototype.dblClickAction = function(event, element) {
     this.emit('dblclick', event, element, this.model.get('item'));
 }
 
-// Pulling up the context menu for an item should focus it; but we need to
-// be careful about how we deal with down/up events surrounding context
-// menus. The up event typically does not fire until the context menu
-// closes: so we focus immediately.
-//
-// This fires _after_ downAction.
-PaperButton.prototype.contextMenuAction = function(e) {
+PaperButton.prototype.contextMenuAction = function(event, element) {
     // Note that upAction may fire _again_ on the actual up event.
     this.upAction(e);
     this.focusAction();

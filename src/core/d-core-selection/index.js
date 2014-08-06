@@ -1,8 +1,4 @@
-function Component(model) {
-    this.model = model;
-    this.model.setNull('multi', false);
-    this.model.setNull('selection', []);
-}
+function Component() {}
 
 module.exports = Component;
 
@@ -39,6 +35,7 @@ Component.prototype.setItemSelected = function (item, isSelected) {
             }
         }
     }
+    this.emit("core-select", {isSelected: isSelected, item: item});
 }
 /**
  * Set the selection state for a given `item`. If the multi property

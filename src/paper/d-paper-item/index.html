@@ -1,6 +1,5 @@
 <index: element="d-paper-item">
 <!--
-@group Paper Elements
 
 `paper-item` is a list-item object for use in menus. It may contain and icon and/or
 a text label.
@@ -13,15 +12,14 @@ Example:
         <paper-item>Sign Out</paper-item>
     </core-menu>
 
-@class paper-item
 -->
 
-<div class="d-paper-item{{if center}} center{{/if}}{{if horizontal}}horizontal{{/if}}{{if layout}}layout{{/if}}" on-click="clickAction($event)">
+<div class="d-paper-item{{if center}} center{{/if}}{{if horizontal}}horizontal{{/if}}{{if layout}}layout{{/if}}" on-click="clickAction($event, $element)" on-dblclick="dblClickAction($event, $element)" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)" on-focus="focusAction($event, $element)" on-blur="blurAction($event, $element)" on-contextmenu="contextMenuAction($event, $element)" >
 
-    <d-paper-ripple as="ripple" circle="{{circle}}" recenteringTouch="false" borderRadius="3"></d-paper-ripple>
+    <d-paper-ripple as="ripple" circle="{{circle}}" borderRadius="{{borderRadius}}"></d-paper-ripple>
 
     {{if icon}}
-        <d-core-icon class="icon" src="{{iconSrc}}" icon="{{icon}}"></d-core-icon>
+        <d-core-icon class="icon" src="{{src}}" icon="{{icon}}"></d-core-icon>
     {{/if}}
     
     {{@content}}

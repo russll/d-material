@@ -77,7 +77,7 @@ PaperRipple.prototype.init = function () {
      */
     this.model.setNull('opacityDecayVelocity', 0.8);
 
-    this.model.setNull('backgroundFill', true);
+    this.model.setNull('backgroundFill', false);
     this.model.setNull('pixelDensity', 1);
 
     this.waves = [];
