@@ -173,7 +173,6 @@ Component.prototype.init = function () {
 
 Component.prototype.create = function () {
     this.model.on('all', 'selected', (function (path, event, value) {
-        
         this.updateSelected();
     }).bind(this));
     this.model.on('all', 'selection', (function (path, event, value) {
@@ -181,12 +180,12 @@ Component.prototype.create = function () {
         this.selectionSelect(value);
     }).bind(this));
     this.model.on('all', 'selectedItem', (function (path, event, value) {
-//        if (this.model.get('selectedItem')) {
-//            var t = this.model.get('selectedItem').templateInstance;
-//            this.model.set('selectedModel', t ? t.model : undefined);
-//        } else {
-//            this.model.set('selectedModel', null);
-//        }
+        if (this.model.get('selectedItem')) {
+            var t = this.model.get('selectedItem').templateInstance;
+            this.model.set('selectedModel', t ? t.model : undefined);
+        } else {
+            this.model.set('selectedModel', null);
+        }
         this.model.set('selectedIndex', this.model.get('selectedItem') ?
             parseInt(this.valueToIndex(this.model.get('selected'))) : -1);
     }).bind(this));
@@ -199,14 +198,15 @@ Component.prototype.getItems = function () {
     return nodes;
 }
 
-Component.prototype.selection = function () {
-    return this.getSelection();
-
-}
-
 Component.prototype.getSelected = function () {
     return this.model.get('selected');
 
+}
+
+Component.prototype.getSelectedItems = function () {
+    var selected = this.model.get('selected');
+    console.log(this.model)
+    return selected;
 }
 
 //!!!
@@ -234,20 +234,17 @@ Component.prototype.validateSelected = function() {
 Component.prototype.clearSelection = function() {
     if (this.model.get('multi')) {
         
-        this.selection().forEach(function(s) {
+        this.model.get('selected').forEach(function(s) {
             this.setItemSelected(s, false);
         }, this);
     } else {
-        this.setItemSelected(this.selection()[0], false);
+        this.setItemSelected(this.model.get('selected')[0], false);
     }
     this.model.set('selectedItem', null);
     this.clear();
 }
 
 Component.prototype.valueForNode = function(node) {
-    
-    
-    
     return node[this.model.get('valueattr')];
 }
 
@@ -256,12 +253,14 @@ Component.prototype.valueToSelection = function(value) {
     
     var item = (value === null || value === undefined) ?
         null : this.getItems()[this.valueToIndex(value)];
-    
+    console.log('val to sel')
+    console.log(item)
     this.select(item);
 }
 
 Component.prototype.updateSelectedItem = function() {
-    this.model.set('selectedItem', this.selection());
+    this.model.remove('selectedItem', this.model.get('selected').length);
+    this.model.set('selectedItem', this.model.get('selected'));
 }
 
 Component.prototype.valueToIndex = function(value) {
@@ -288,9 +287,11 @@ Component.prototype.selectionSelect = function(detail) {
 }
 
 Component.prototype.applySelection = function(item, isSelected) {
-    
-    
-    
+    console.log('apply selection')
+    console.log(item)
+
+
+
     if (this.model.get('selectedClass')) {
         item.classList.toggle(this.model.get('selectedClass'), isSelected);
     }

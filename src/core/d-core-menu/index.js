@@ -167,7 +167,27 @@ Component.prototype.init = function () {
      * @default false
      */
     this.model.setNull('notap', false);
+
+    this.model.fn('selectedItemsProperty', {
+        get: (function (selected, items) {
+            console.log('selected items')
+            console.log(selected)
+            console.log(items)
+            var selectedItems = [];
+            if(selected && items) {
+                for (var i = 0; i < selected.length; i++) {
+                    for (var k = 0; k < items.length; k++) {
+                        if (items[k][this.model.get('valueattr')] == selected[i]) {
+                            selectedItems.push(items[k]);
+                        }
+                    }
+                }
+            }
+            return selectedItems;
+        }).bind(this)
+    });
 }
+
 Component.prototype.create = function () {
     this.model.on('all', 'selected', (function (path, event, value) {
         this.updateSelected();
@@ -176,16 +196,16 @@ Component.prototype.create = function () {
         //this.selectionSelect(value);
     }).bind(this));
     this.model.on('all', 'selectedItem', (function (path, event, value) {
-//        if (this.model.get('selectedItem')) {
-//            var t = this.model.get('selectedItem').templateInstance;
-//            this.model.set('selectedModel', t ? t.model : undefined);
-//        } else {
-//            this.model.set('selectedModel', null);
-//        }
         this.model.set('selectedIndex', this.model.get('selectedItem') ?
             parseInt(this.valueToIndex(this.model.get('selected'))) : -1);
     }).bind(this));
     this.on('core-select', function(detail){
         this.selectionSelect(detail);
-    })
+    });
+    this.model.start('selectedItems', 'selected', 'items', 'selectedItemsProperty');
+}
+
+Component.prototype.getSelectedItems = function(){
+    console.log(this.model)
+    return this.model.get('selectedItems');
 }

@@ -13,7 +13,7 @@ Component.prototype.clear = function () {
  * the selected item or undefined if there is no selection.
  */
 Component.prototype.getSelection = function () {
-    return this.model.get('multi') ? this.model.get('selection') : this.model.get('selection.0');
+    return this.model.get('selection');
 }
 /**
  * Indicates if a given item is selected.
@@ -45,6 +45,8 @@ Component.prototype.setItemSelected = function (item, isSelected) {
  * @param {any} item: The item to select.
  */
 Component.prototype.select = function (item) {
+    console.log('select')
+    console.log(item)
     if (this.model.get('multi')) {
         this.toggle(item);
     } else if (this.getSelection() !== item) {
