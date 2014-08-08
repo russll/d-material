@@ -14,7 +14,7 @@ Example:
 
 -->
 
-<div class="d-paper-item{{if center}} center{{/if}}{{if horizontal}}horizontal{{/if}}{{if layout}}layout{{/if}}" on-click="clickAction($event, $element)" on-dblclick="dblClickAction($event, $element)" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)" on-focus="focusAction($event, $element)" on-blur="blurAction($event, $element)" on-contextmenu="contextMenuAction($event, $element)" >
+<div data-key="{{if value}}{{value}}{{/if}}" class="d-paper-item{{if center}} center{{/if}}{{if horizontal}}horizontal{{/if}}{{if layout}}layout{{/if}}" on-click="clickAction($event, $element)" on-dblclick="dblClickAction($event, $element)" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)" on-focus="focusAction($event, $element)" on-blur="blurAction($event, $element)" on-contextmenu="contextMenuAction($event, $element)" >
 
     <d-paper-ripple as="ripple" circle="{{circle}}" borderRadius="{{borderRadius}}"></d-paper-ripple>
 

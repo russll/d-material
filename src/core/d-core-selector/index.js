@@ -61,6 +61,8 @@ Component.prototype.init = function () {
      * @default 'name'
      */
     this.model.setNull('valueattr', 'name');
+    this.model.setNull('valuefield', 'name');
+    this.model.setNull('valuefield', 'name');
 
     /**
      * Specifies the CSS class to be used to add to the selected element.
@@ -176,7 +178,6 @@ Component.prototype.create = function () {
         this.updateSelected();
     }).bind(this));
     this.model.on('all', 'selection', (function (path, event, value) {
-        
         this.selectionSelect(value);
     }).bind(this));
     this.model.on('all', 'selectedItem', (function (path, event, value) {
@@ -211,7 +212,7 @@ Component.prototype.getSelectedItems = function () {
 
 //!!!
 Component.prototype.updateSelected = function() {
-    this.validateSelected();
+    //this.validateSelected();
     if (this.model.get('multi')) {
         this.clearSelection();
         
@@ -244,18 +245,32 @@ Component.prototype.clearSelection = function() {
     this.clear();
 }
 
-Component.prototype.valueForNode = function(node) {
-    return node[this.model.get('valueattr')];
+Component.prototype.nodeForData = function(data) {
+    console.log('data')
+    console.log(data)
+    console.log('[' + this.model.get('valueattr') + '=' + data + ']')
+    console.log(this.wrapper)
+    console.log(this.wrapper.querySelectorAll("[" + this.model.get("valueattr") + "='" + data + "']"))
+    return this.wrapper.querySelectorAll("[" + this.model.get("valueattr") + "='" + data + "']");
+}
+Component.prototype.dataForNode = function(node) {
+    console.log(this.model.get("valueattr"))
+    console.log(node.getAttribute)
+    console.log(node[this.model.get("valueattr")])
+    return node[this.model.get("valueattr")] || node.getAttribute(this.model.get("valueattr"));
+}
+
+Component.prototype.valueForItem = function(data) {
+    return data[this.model.get('valuefield')];
 }
 
 Component.prototype.valueToSelection = function(value) {
-    
-    
     var item = (value === null || value === undefined) ?
         null : this.getItems()[this.valueToIndex(value)];
-    console.log('val to sel')
-    console.log(item)
-    this.select(item);
+    //this.select(item);
+    console.log('------val to sel!!!----')
+    console.log(value)
+    this.select(value);
 }
 
 Component.prototype.updateSelectedItem = function() {
@@ -266,7 +281,10 @@ Component.prototype.updateSelectedItem = function() {
 Component.prototype.valueToIndex = function(value) {
     // find an item with value == value and return it's index
     for (var i=0, items=this.model.get('items'), c; (c=items[i]); i++) {
-        if (this.valueForNode(c) == value) {
+        console.log('--'+i)
+        console.log(c)
+        console.log(this.valueForItem(c))
+        if (this.valueForItem(c) == value) {
             return i;
         }
     }
@@ -277,32 +295,44 @@ Component.prototype.valueToIndex = function(value) {
 //!!!
 // events fired from <core-selection> object
 Component.prototype.selectionSelect = function(detail) {
-    
-    
+    console.log(this)
+    console.log('data for detail')
+    console.log(detail)
+//    console.log(this.dataForNode(detail.item))
     this.updateSelectedItem();
     if (detail.item) {
+
         this.applySelection(detail.item, detail.isSelected);
     }
     
 }
 
-Component.prototype.applySelection = function(item, isSelected) {
+Component.prototype.applySelection = function(data, isSelected) {
     console.log('apply selection')
-    console.log(item)
+    console.log(isSelected)
+    console.log(data)
 
-
-
-    if (this.model.get('selectedClass')) {
-        item.classList.toggle(this.model.get('selectedClass'), isSelected);
-    }
-    if (this.model.get('selectedProperty')) {
-        item[this.model.get('selectedProperty')] = isSelected;
-    }
-    if (this.model.get('selectedAttribute') && item.setAttribute) {
-        if (isSelected) {
-            item.setAttribute(this.model.get('selectedAttribute'), '');
-        } else {
-            item.removeAttribute(this.model.get('selectedAttribute'));
+    var items = this.nodeForData(data);
+    console.log('items-----')
+    console.log(items)
+    for(var i = 0;i<items.length;i++) {
+        var item = items[i];
+        console.log('-item-')
+        console.log(item)
+        if (this.model.get('selectedClass')) {
+            item.classList.toggle(this.model.get('selectedClass'), isSelected);
+            console.log('item.classList')
+            console.log(item.classList)
+        }
+        if (this.model.get('selectedProperty')) {
+            item[this.model.get('selectedProperty')] = isSelected;
+        }
+        if (this.model.get('selectedAttribute') && item.setAttribute) {
+            if (isSelected) {
+                item.setAttribute(this.model.get('selectedAttribute'), '');
+            } else {
+                item.removeAttribute(this.model.get('selectedAttribute'));
+            }
         }
     }
 }

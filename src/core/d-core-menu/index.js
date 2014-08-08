@@ -7,7 +7,7 @@ Component.prototype = new selector();
 Component.prototype.view = __dirname;
 
 Component.prototype.init = function () {
-
+    this.selection = [];
     /**
      * Gets or sets the selected element.  Default to use the index
      * of the item element.
@@ -200,6 +200,8 @@ Component.prototype.create = function () {
             parseInt(this.valueToIndex(this.model.get('selected'))) : -1);
     }).bind(this));
     this.on('core-select', function(detail){
+        console.log('=====core sel')
+        console.log(detail)
         this.selectionSelect(detail);
     });
     this.model.start('selectedItems', 'selected', 'items', 'selectedItemsProperty');

@@ -3,7 +3,8 @@ function Component() {}
 module.exports = Component;
 
 Component.prototype.clear = function () {
-    this.model.set('selection', []);
+//    this.model.set('selection', []);
+    this.selection = [];
 }
 /**
  * Retrieves the selected item(s).
@@ -13,7 +14,8 @@ Component.prototype.clear = function () {
  * the selected item or undefined if there is no selection.
  */
 Component.prototype.getSelection = function () {
-    return this.model.get('selection');
+//    return this.model.get('selection');
+    return this.selection;
 }
 /**
  * Indicates if a given item is selected.
@@ -22,16 +24,21 @@ Component.prototype.getSelection = function () {
  * @returns Returns true if `item` is selected.
  */
 Component.prototype.isSelected = function (item) {
-    return this.model.get('selection').indexOf(item) >= 0;
+//    return this.model.get('selection').indexOf(item) >= 0;
+    return this.selection.indexOf(item) >= 0;
 }
 Component.prototype.setItemSelected = function (item, isSelected) {
     if (item !== undefined && item !== null) {
         if (isSelected) {
-            this.model.push('selection', item);
+            //this.selection.push('selection', item);
+            this.selection.push(item);
+
         } else {
-            var i = this.model.get('selection').indexOf(item);
+            //var i = this.model.get('selection').indexOf(item);
+            var i = this.selection.indexOf(item);
             if (i >= 0) {
-                this.model.remove('selection', i, 1);
+                //this.model.remove('selection', i, 1);
+                this.selection.slice(i, 1);
             }
         }
     }
