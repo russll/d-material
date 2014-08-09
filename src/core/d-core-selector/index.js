@@ -206,8 +206,7 @@ Component.prototype.getSelected = function () {
 
 Component.prototype.getSelectedItems = function () {
     var selected = this.model.get('selected');
-    console.log(this.model)
-    return selected;
+    "    return selected;
 }
 
 //!!!
@@ -246,18 +245,10 @@ Component.prototype.clearSelection = function() {
 }
 
 Component.prototype.nodeForData = function(data) {
-    console.log('data')
-    console.log(data)
-    console.log('[' + this.model.get('valueattr') + '=' + data + ']')
-    console.log(this.wrapper)
-    console.log(this.wrapper.querySelectorAll("[" + this.model.get("valueattr") + "='" + data + "']"))
-    return this.wrapper.querySelectorAll("[" + this.model.get("valueattr") + "='" + data + "']");
+    "    "    "    "    "    return this.wrapper.querySelectorAll("[" + this.model.get("valueattr") + "='" + data + "']");
 }
 Component.prototype.dataForNode = function(node) {
-    console.log(this.model.get("valueattr"))
-    console.log(node.getAttribute)
-    console.log(node[this.model.get("valueattr")])
-    return node[this.model.get("valueattr")] || node.getAttribute(this.model.get("valueattr"));
+    "    "    "    return node[this.model.get("valueattr")] || node.getAttribute(this.model.get("valueattr"));
 }
 
 Component.prototype.valueForItem = function(data) {
@@ -268,9 +259,7 @@ Component.prototype.valueToSelection = function(value) {
     var item = (value === null || value === undefined) ?
         null : this.getItems()[this.valueToIndex(value)];
     //this.select(item);
-    console.log('------val to sel!!!----')
-    console.log(value)
-    this.select(value);
+    "    "    this.select(value);
 }
 
 Component.prototype.updateSelectedItem = function() {
@@ -281,10 +270,7 @@ Component.prototype.updateSelectedItem = function() {
 Component.prototype.valueToIndex = function(value) {
     // find an item with value == value and return it's index
     for (var i=0, items=this.model.get('items'), c; (c=items[i]); i++) {
-        console.log('--'+i)
-        console.log(c)
-        console.log(this.valueForItem(c))
-        if (this.valueForItem(c) == value) {
+        "        "        "        if (this.valueForItem(c) == value) {
             return i;
         }
     }
@@ -295,11 +281,7 @@ Component.prototype.valueToIndex = function(value) {
 //!!!
 // events fired from <core-selection> object
 Component.prototype.selectionSelect = function(detail) {
-    console.log(this)
-    console.log('data for detail')
-    console.log(detail)
-//    console.log(this.dataForNode(detail.item))
-    this.updateSelectedItem();
+    "    "    "//    "    this.updateSelectedItem();
     if (detail.item) {
 
         this.applySelection(detail.item, detail.isSelected);
@@ -308,22 +290,13 @@ Component.prototype.selectionSelect = function(detail) {
 }
 
 Component.prototype.applySelection = function(data, isSelected) {
-    console.log('apply selection')
-    console.log(isSelected)
-    console.log(data)
-
+    "    "    "
     var items = this.nodeForData(data);
-    console.log('items-----')
-    console.log(items)
-    for(var i = 0;i<items.length;i++) {
+    "    "    for(var i = 0;i<items.length;i++) {
         var item = items[i];
-        console.log('-item-')
-        console.log(item)
-        if (this.model.get('selectedClass')) {
+        "        "        if (this.model.get('selectedClass')) {
             item.classList.toggle(this.model.get('selectedClass'), isSelected);
-            console.log('item.classList')
-            console.log(item.classList)
-        }
+            "            "        }
         if (this.model.get('selectedProperty')) {
             item[this.model.get('selectedProperty')] = isSelected;
         }

@@ -52,8 +52,6 @@ Component.prototype.setItemSelected = function (item, isSelected) {
  * @param {any} item: The item to select.
  */
 Component.prototype.select = function (item) {
-    console.log('select')
-    console.log(item)
     if (this.model.get('multi')) {
         this.toggle(item);
     } else if (this.getSelection() !== item) {
