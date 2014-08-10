@@ -39,17 +39,17 @@ To change the radio unchecked color:
 
 -->
 
-<div class="d-paper-radio-button{{if checked == 'true'}} checked{{/if}}{{if disabled == 'true'}} disabled{{/if}}" role="radio" tabindex="0" aria-checked="{{checked}}" aria-label="{{label}}" on-tap="tap($event)">
+<div class="d-paper-radio-button{{if checked}} checked{{/if}}{{if disabled}} disabled{{/if}}" role="radio" tabindex="0" aria-checked="{{checked}}" aria-label="{{label}}" on-click="clickAction($event, $element)" on-dblclick="dblClickAction($event, $element)" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)" on-focus="focusAction($event, $element)" on-blur="blurAction($event, $element)" on-contextmenu="contextMenuAction($event, $element)">
   
-  <div class="radio-container" class="{{if label}}labeled{{/if}}">
+  <div class="radio-container{{if label}} labeled{{/if}}">
   
     <div class="off-radio"></div>
-    <div class="on-radio{{if checked == 'true'}} fill{{/if}}"></div>
+    <div class="on-radio{{if checked}} fill{{/if}}"></div>
     
-    <d-paper-ripple circle="true" recenteringTouch="true" checked="{{!checked}}"></d-paper-ripple>
+    <d-paper-ripple as="ripple" circle></d-paper-ripple>
     
   </div>
   
-  <div class="radio-label{{if !label}} hidden{{/if}}" aria-hidden="true">{{label}}{{@content}}</div>
+  <div class="radio-label{{if !label}} hidden{{/if}}" aria-hidden="true">{{label}}</div>
   
 </div>

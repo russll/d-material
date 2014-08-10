@@ -211,12 +211,13 @@ Component.prototype.getSelectedItems = function () {
 
 //!!!
 Component.prototype.updateSelected = function() {
+    console.log('update selected')
     //this.validateSelected();
     if (this.model.get('multi')) {
         this.clearSelection();
         
         this.model.get('selected') && this.model.get('selected').forEach(function(s) {
-            
+            console.log('update pred val to sel')
             this.valueToSelection(s);
         }, this);
     } else {
@@ -235,6 +236,7 @@ Component.prototype.clearSelection = function() {
     if (this.model.get('multi')) {
         
         this.model.get('selected').forEach(function(s) {
+            console.log('clear selection')
             this.setItemSelected(s, false);
         }, this);
     } else {
@@ -259,6 +261,7 @@ Component.prototype.valueToSelection = function(value) {
     var item = (value === null || value === undefined) ?
         null : this.getItems()[this.valueToIndex(value)];
     //this.select(item);
+    console.log('val to sel request')
     this.select(value);
 }
 
@@ -290,7 +293,9 @@ Component.prototype.selectionSelect = function(detail) {
 }
 
 Component.prototype.applySelection = function(data, isSelected) {
-
+    console.log('apply selection')
+    console.log(data)
+    console.log(isSelected)
     var items = this.nodeForData(data);
     for(var i = 0;i<items.length;i++) {
         var item = items[i];
@@ -331,6 +336,8 @@ Component.prototype.selectAction = function(event, element, data) {
 }
 
 Component.prototype.addRemoveSelected = function(value) {
+    console.log('add remove selected')
+    console.log(value)
     var i = this.model.get('selected').indexOf(value);
     if (i >= 0) {
         this.model.remove('selected', i, 1);

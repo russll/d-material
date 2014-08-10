@@ -40,16 +40,10 @@ To change the checbox unchecked color:
 
 -->
 
-<div class="d-paper-checkbox{{if checked}} checked{{/if}}{{if box}} box{{/if}}{{if !checked}} unchecked{{/if}}{{if !checkmark}} checkmark{{/if}}{{if disabled}} disabled{{/if}}" role="checkbox" on-mousedown="downAction($event)" on-mouseup="upAction($event)" on-transitionend="checkboxAnimationEnd($event)">
-
-  <div class="checkbox-container{{if !label}} labeled{{/if}}" >
-
-      <d-paper-ripple circle recenteringTouch checked="{{!checked}}"></d-paper-ripple>
-
-      <div class="checkbox" on-transitionend="checkboxAnimationEnd($event)" on-webkitAnimationEnd="checkboxAnimationEnd($event)"></div>
-    
+<div class="d-paper-checkbox{{if checked}} checked{{/if}}{{if box}} box{{/if}}{{if !checked}} unchecked{{/if}}{{if checkmark}} checkmark{{/if}}{{if disabled}} disabled{{/if}}" role="checkbox" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)">
+  <div class="checkbox-container{{if label}} labeled{{/if}}">
+      <d-paper-ripple as="ripple" circle></d-paper-ripple>
+      <div class="checkbox" on-transitionend="checkboxAnimationEnd($event, $element)" on-webkitAnimationEnd="checkboxAnimationEnd($event, $element)"></div>
   </div>
-  
-  <div class="checkbox-label{{if !label}}hidden{{/if}}">{{label}}{{@content}}</div>
-
+  <div class="checkbox-label{{if !label}} hidden{{/if}}">{{label}}</div>
 </div>

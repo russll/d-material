@@ -39,7 +39,7 @@ Component.prototype.init = function () {
      * @type Object
      * @default null
      */
-    this.model.setNull('selected', null);
+    this.model.setNull('selected', []);
 
     /**
      * If true, multiple selections are allowed.
@@ -177,7 +177,7 @@ Component.prototype.init = function () {
             if(selected && items) {
                 for (var i = 0; i < selected.length; i++) {
                     for (var k = 0; k < items.length; k++) {
-                        if (items[k][this.model.get('valueattr')] == selected[i]) {
+                        if (items[k][this.model.get('valuefield')] == selected[i]) {
                             selectedItems.push(items[k]);
                         }
                     }
@@ -190,7 +190,7 @@ Component.prototype.init = function () {
 
 Component.prototype.create = function () {
     this.model.on('all', 'selected', (function (path, event, value) {
-        this.updateSelected();
+        //this.updateSelected();
     }).bind(this));
     this.model.on('all', 'selection', (function (path, event, value) {
         //this.selectionSelect(value);
@@ -208,6 +208,20 @@ Component.prototype.create = function () {
 }
 
 Component.prototype.getSelectedItems = function(){
-    console.log(this.model)
-    return this.model.get('selectedItems');
+    var selectedItems = [];
+    var selected = this.model.get('selected');
+    var items = this.model.get('items');
+    if(selected && items) {
+        for (var i = 0; i < selected.length; i++) {
+            for (var k = 0; k < items.length; k++) {
+                if (items[k][this.model.get('valuefield')] == selected[i]) {
+                    selectedItems.push(items[k]);
+                }
+            }
+        }
+    }
+    console.log(selectedItems)
+    console.log(this.model.get('selectedItems'))
+    return selectedItems;
+    //return this.model.get('selectedItems');
 }

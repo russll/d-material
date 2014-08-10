@@ -13,7 +13,7 @@ Component.prototype.init = function () {
      * @type number
      * @default 0
      */
-    this.model.setNull('value', 0);
+    this.model.setNull('progress', 0);
 
     /**
      * The number that indicates the minimum value of the range.
@@ -50,7 +50,8 @@ Component.prototype.init = function () {
      * @default 0
      */
     this.model.setNull('ratio', 0);
-    
+    this.model.setNull('secondaryRatio', 0);
+
     /**
      * The number that represents the current secondary progress.
      *
@@ -59,30 +60,34 @@ Component.prototype.init = function () {
      * @default 0
      */
     this.model.setNull('secondaryProgress', 0);
-
 }
 
-Component.prototype.update= function() {
-    this.validateValue();
-    this.ratio = this.calcRatio(this.value) * 100;
-    this.secondaryProgress = this.clampValue(this.secondaryProgress);
-    this.secondaryRatio = this.calcRatio(this.secondaryProgress) * 100;
+Component.prototype.create = function() {
+    this.model.fn('ratioProperty', {
+        get: (function (progress) {
+            var p = this.clampValue(progress);
+            return this.calcRatio(p) * 100;
+        }).bind(this)
+    });
+    this.model.fn('secondaryRatioProperty', {
+        get: (function (secondaryProgress) {
+            var sp = this.clampValue(secondaryProgress);
+            return this.calcRatio(sp) * 100;
+        }).bind(this)
+    });
+
+    this.model.start('ratio', 'progress', 'ratioProperty');
+    this.model.start('secondaryRatio', 'secondaryProgress', 'secondaryRatioProperty');
 }
 
 Component.prototype.calcRatio= function(value) {
-    return (this.clampValue(value) - this.min) / (this.max - this.min);
+    return (this.clampValue(value) - this.model.get('min')) / (this.model.get('max') - this.model.get('min'));
 }
 
 Component.prototype.clampValue= function(value) {
-    return Math.min(this.max, Math.max(this.min, this.calcStep(value)));
+    return Math.min(this.model.get('max'), Math.max(this.model.get('min'), this.calcStep(value)));
 }
 
 Component.prototype.calcStep= function(value) {
-    return this.step ? (Math.round(value / this.step) / (1 / this.step)) : value;
-}
-
-Component.prototype.validateValue= function() {
-    var v = this.clampValue(this.value);
-    this.value = this.oldValue = isNaN(v) ? this.oldValue : v;
-    return this.value !== v;
+    return this.model.get('step') ? (Math.round(value / this.model.get('step')) / (1 / this.model.get('step'))) : value;
 }

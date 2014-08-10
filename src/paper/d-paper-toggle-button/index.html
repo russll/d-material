@@ -44,20 +44,16 @@ To change the bar color for unchecked state:
     paper-toggle-button::shadow #toggleBar {
       background-color: red;
     }
-
-@group Paper Elements
-@element paper-toggle-button
-@homepage github.io
 -->
 
-<div class="d-paper-toggle-button{{if checked == 'true'}} checked{{/if}}" touch-action="pan-y" role="button" aria-pressed="{{checked}}" tabindex="0">
+<div class="d-paper-toggle-button{{if checked}} checked{{/if}}" touch-action="pan-y" role="button" aria-pressed="{{checked}}" tabindex="0" on-click="clickAction($event, $element)" on-dblclick="dblClickAction($event, $element)" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)" on-focus="focusAction($event, $element)" on-blur="blurAction($event, $element)" on-contextmenu="contextMenuAction($event, $element)">
 
-  <div class="toggle-container{{if checked == 'true'}} checked{{/if}}">
+  <div class="toggle-container">
   
-    <div as="toggleBar" class="toggle-bar{{if checked == 'true'}} checked{{/if}}"></div>
-    <div as="toggleRadio" class="toggle-radio{{if dragging == 'true'}} dragging{{/if}}{{if checked == 'true'}} checked{{/if}}" on-trackstart="trackStart($event)" on-track="track($event)" on-trackend="trackEnd($event)">
+    <div as="toggleBar" class="toggle-bar"></div>
+    <div as="toggleRadio" class="toggle-radio{{if dragging}} dragging{{/if}}">
 
-        <d-paper-radio-button toggles="true"></d-paper-radio-button>
+        <d-paper-radio-button as="radio" toggles checked="{{checked}}"></d-paper-radio-button>
 
     </div>
   </div>

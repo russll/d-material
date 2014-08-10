@@ -53,7 +53,7 @@ To change the slider secondary progress bar color:
 
   <div class="slider-container" touch-action="pan-y" on-keydown="keydown()">
   
-    <d-paper-progress class="slider-bar" aria-hidden="true" min="{{min}}" max="{{max}}" value="{{immediateValue}}" secondaryProgress="{{secondaryProgress}}"
+    <d-paper-progress class="slider-bar" aria-hidden="true" min="{{min}}" max="{{max}}" progress="{{immediateValue}}" secondaryProgress="{{secondaryProgress}}"
         on-down="bardown()" on-up="resetKnob()" 
         on-trackstart="trackStart()" on-track="track()" on-trackend="trackEnd()"></d-paper-progress>
     
@@ -65,7 +65,7 @@ To change the slider secondary progress bar color:
       </div>
     {{/if}}
     
-    <div class="slider-knob {{if pin}} pin{{/if}}{{if snaps}} snaps{{/if}} center-justified{{if center}} center{{/if}}{{if horizontal}} horizontal{{/if}}{{if layout}} layout{{/if}}"
+    <div class="slider-knob{{if pin}} pin{{/if}}{{if snaps}} snaps{{/if}} center-justified center horizontal layout"
         touch-action="none" on-down="expandKnob()" on-up="resetKnob()"
         on-trackstart="trackStart()" on-track="track()" on-trackend="trackEnd()"
         on-transitionend="knobTransitionEnd()"
@@ -78,8 +78,7 @@ To change the slider secondary progress bar color:
     
   </div>
   
-  {{if editable}}">
+  {{if editable}}
     <d-paper-input class="input" class="slider-input" value="{{immediateValue}}" validate="^[-+]?[0-9]*\.?[0-9]+$" disabled="{{disabled}}" on-change="inputChange()"></d-paper-input>
   {{/if}}
-
 </div>

@@ -28,6 +28,7 @@ Component.prototype.isSelected = function (item) {
     return this.selection.indexOf(item) >= 0;
 }
 Component.prototype.setItemSelected = function (item, isSelected) {
+    console.log('set item selected')
     if (item !== undefined && item !== null) {
         if (isSelected) {
             //this.selection.push('selection', item);
@@ -38,7 +39,7 @@ Component.prototype.setItemSelected = function (item, isSelected) {
             var i = this.selection.indexOf(item);
             if (i >= 0) {
                 //this.model.remove('selection', i, 1);
-                this.selection.slice(i, 1);
+                this.selection.splice(i, 1);
             }
         }
     }
@@ -65,5 +66,13 @@ Component.prototype.select = function (item) {
  * @param {any} item: The item to toggle.
  */
 Component.prototype.toggle = function (item) {
+    console.log('toggle 1')
+    console.log(!this.isSelected(item))
+    console.log(item)
+    console.log(this.model.get('selected'))
+    console.log(this.selection)
     this.setItemSelected(item, !this.isSelected(item));
+    console.log('toggle 2')
+    console.log(this.model.get('selected'))
+    console.log(this.selection)
 }

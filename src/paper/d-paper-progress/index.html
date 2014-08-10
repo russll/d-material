@@ -37,12 +37,9 @@ To change the progress bar background color:
 
 -->
 
-<div class="d-paper-progress">
-
+<div class="d-paper-progress{{if class}} {{class}}{{/if}}">
     <div class="progress-container" role="progressbar" aria-valuenow="{{value}}" aria-valuemin="{{min}}" aria-valuemax="{{max}}">
-    
       <div class="secondary-progress" style="width: {{secondaryRatio}}%;"></div>
       <div class="active-progress" style="width: {{ratio}}%;"></div>
-      
     </div>
 </div>

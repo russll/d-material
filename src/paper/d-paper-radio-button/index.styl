@@ -15,9 +15,9 @@
     width 16px
     height 16px
     cursor pointer
-  .radio-container.labeled
-    display inline-block
-    vertical-align middle
+    &.labeled
+      display inline-block
+      vertical-align middle
   .d-paper-ripple
     position absolute
     top -17px
@@ -25,8 +25,9 @@
     width 50px
     height 50px
     color #5a5a5a
-  .d-paper-ripple.checked
-    color #0f9d58
+  &.checked
+    .d-paper-ripple
+      color #0f9d58
   .off-radio
     position absolute
     top 0px
