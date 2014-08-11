@@ -38,7 +38,7 @@ To style the background, text and hover color, apply the `background` and
 
 -->
 
-<div as="wrapper" class="d-paper-button{{if raised}} raised-button{{/if}}{{if fab}} fab{{/if}} {{class}}" aria-label="{{label}}" tabindex="{{tabindex}}" tooltip="{{label}}" role="button" on-click="clickAction($event, $element)" on-dblclick="dblClickAction($event, $element)" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)" on-focus="focusAction($event, $element)" on-blur="blurAction($event, $element)" on-contextmenu="contextMenuAction($event, $element)" style="z-index: {{z}};{{if width}}width: {{width}};{{/if}}{{if height}}height: {{height}};{{/if}}">
+<div as="wrapper" class="d-paper-button{{if colored}} colored{{/if}}{{if raised}} raised-button{{/if}}{{if fab}} fab{{/if}} {{class}}" aria-label="{{label}}" tabindex="{{tabindex}}" tooltip="{{label}}" role="button" on-click="clickAction($event, $element)" on-dblclick="dblClickAction($event, $element)" on-mousedown="downAction($event, $element)" on-mouseup="upAction($event, $element)" on-focus="focusAction($event, $element)" on-blur="blurAction($event, $element)" on-contextmenu="contextMenuAction($event, $element)" style="z-index: {{z}};{{if width}}width: {{width}};{{/if}}{{if height}}height: {{height}};{{/if}}">
 
     {{if raised}}
       <div class="shadow-container fit">
@@ -53,7 +53,7 @@ To style the background, text and hover color, apply the `background` and
         {{if icon}}
           <d-core-icon class="icon" icon="{{icon}}" src="{{src}}"></d-core-icon>
         {{/if}}
-        {{@content}}
+        <span>{{label}}</span>
       </div>
     </div>
 

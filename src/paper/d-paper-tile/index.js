@@ -88,7 +88,7 @@ Component.prototype.init = function(model) {
      * @type string
      * @default ''
      */
-    this.model.setNull('iconSrc', null);
+    this.model.setNull('src', null);
 
     /**
      * (optional) Specifies the icon name or index in the set of icons
