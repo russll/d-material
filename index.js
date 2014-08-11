@@ -1,5 +1,3 @@
-//app.use(require('d-material'))
-
 module.exports = run;
 
 function run(app, options){
