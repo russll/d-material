@@ -14,12 +14,9 @@ at the moment we have the following components:
 - ripple effect
 - shadow effect
 - collapse effect
-
 - transitions
 - animations
-
 - icons
-
 - button(flat/raised/floating)
 - checkbox
 - dialog
@@ -49,7 +46,7 @@ planning:
 - svg/canvas rendering modes
 - integration with leafletjs
 - mobile(touch) support
-
+*chart types
 - Area Charts
 - Bar Charts
 - Box Plot Charts

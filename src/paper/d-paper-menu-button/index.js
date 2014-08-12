@@ -1,5 +1,4 @@
-function Component() {
-}
+function Component() {}
 
 module.exports = Component;
 
