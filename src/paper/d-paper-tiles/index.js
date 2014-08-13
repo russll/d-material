@@ -1,9 +1,7 @@
-/**
- * Created by mukagali on 6/29/14.
- */
-function Tiles() {}
+function Component() {}
 
-module.exports = Tiles;
-Tiles.prototype.view = __dirname;
+module.exports = Component;
 
-Tiles.prototype.create = function() {}
+Component.prototype.view = __dirname;
+
+Component.prototype.create = function() {}

@@ -1,7 +1,3 @@
-/**
- * Created by mukagali on 6/30/14.
- */
-
 function Component() {}
 
 module.exports = Component;
