@@ -1,10 +1,10 @@
-function PaperButton() {}
+function Component() {}
 
-module.exports = PaperButton;
+module.exports = Component;
 
-PaperButton.prototype.view = __dirname;
+Component.prototype.view = __dirname;
 
-PaperButton.prototype.init = function () {
+Component.prototype.init = function () {
 
     /**
      * If true, the button is currently active either because the
@@ -104,7 +104,7 @@ PaperButton.prototype.init = function () {
     this.model.setNull('splash', false);
 }
 
-PaperButton.prototype.create = function() {
+Component.prototype.create = function() {
     this.model.on('all', 'active', (function (path, event, active) {
         if (this.model.get('active')) {
             // FIXME: remove when paper-ripple can have a default 'down' state.
@@ -135,12 +135,12 @@ PaperButton.prototype.create = function() {
     }).bind(this));
 }
 
-PaperButton.prototype.insideButton = function (x, y) {
+Component.prototype.insideButton = function (x, y) {
     var rect = this.wrapper.getBoundingClientRect();
     return (rect.left <= x) && (x <= rect.right) && (rect.top <= y) && (y <= rect.bottom);
 }
 
-PaperButton.prototype.adjustZ = function () {
+Component.prototype.adjustZ = function () {
     if (this.model.get('focused')) {
         this.model.set('splash', true);
     } else {
@@ -157,7 +157,7 @@ PaperButton.prototype.adjustZ = function () {
     }
 }
 
-PaperButton.prototype.downAction = function(event) {
+Component.prototype.downAction = function(event) {
     this.lastEvent = event;
 
     this.model.set('pressed', true);
@@ -171,7 +171,7 @@ PaperButton.prototype.downAction = function(event) {
     this.emit('mousedown', event);
 }
 
-PaperButton.prototype.upAction = function() {
+Component.prototype.upAction = function() {
     this.model.set('pressed', false);
 
     if (!this.model.get('isToggle')) {
@@ -180,23 +180,23 @@ PaperButton.prototype.upAction = function() {
     this.emit('mouseup', event);
 }
 
-PaperButton.prototype.focusAction = function() {
+Component.prototype.focusAction = function() {
     if (!this.model.get('pressed')) {
         this.model.set('focused', true);
     }
 }
 
-PaperButton.prototype.blurAction = function() {
+Component.prototype.blurAction = function() {
     this.model.set('focused', false);
 }
-PaperButton.prototype.clickAction = function(event, element) {
+Component.prototype.clickAction = function(event, element) {
     this.emit('click', event, element, this.model.get('item'));
 }
-PaperButton.prototype.dblClickAction = function(event, element) {
+Component.prototype.dblClickAction = function(event, element) {
     this.emit('dblclick', event, element, this.model.get('item'));
 }
 
-PaperButton.prototype.contextMenuAction = function(event, element) {
+Component.prototype.contextMenuAction = function(event, element) {
     // Note that upAction may fire _again_ on the actual up event.
     this.upAction(e);
     this.focusAction();
