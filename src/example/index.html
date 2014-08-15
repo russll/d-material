@@ -1,0 +1,239 @@
+<index: element="d-material-example">
+<d-core-drawer-panel left right="true">
+<main>
+    <d-core-header-panel>
+        <header>
+            <d-core-toolbar mode="medium-tall">
+                <middle>
+                    <div class="middle indent"></div>
+                </middle>
+                <bottom>
+                    <d-paper-button fab raised circle class="bottom" icon="add" z="1"></d-paper-button>
+                    <div class="indent">D-Material components</div>
+                </bottom>
+                <d-paper-button circle icon="menu"></d-paper-button>
+                <div class="flex"></div>
+                <d-paper-button circle icon="search"></d-paper-button>
+                <d-paper-button circle icon="info"></d-paper-button>
+            </d-core-toolbar>
+        </header>
+        <div style="padding: 60px;">
+            <section>
+                <div>Flat buttons</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button width="120px" height="36px" padding="16px" label="button"></d-paper-button>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button colored width="120px" height="36px" padding="16px" label="colored"></d-paper-button>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button disabled width="120px" height="36px" padding="16px" label="disabled"></d-paper-button>
+                </div>
+            </section>
+            <section>
+                <div>Raised buttons</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button raised width="120px" height="36px" padding="16px" label="button"></d-paper-button>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button colored raised width="120px" height="36px" padding="16px" label="colored"></d-paper-button>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button disabled raised width="120px" height="36px" padding="16px" label="disabled"></d-paper-button>
+                </div>
+            </section>
+            <section>
+                <div>Floating action buttons</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button fab raised circle icon="add" z="1"></d-paper-button>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button fab raised circle class="mini" icon="book" z="1"></d-paper-button>
+                </div>
+            </section>
+            <section>
+                <div>Checkbox</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-checkbox label="notify me"></d-paper-checkbox>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-checkbox checked label="notify me"></d-paper-checkbox>
+                </div>
+            </section>
+            <section>
+                <div>Radio button</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-radio-button label="notify me"></d-paper-radio-button>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-radio-button checked label="notify me"></d-paper-radio-button>
+                </div>
+            </section>
+            <section>
+                <div>Toggle button</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-toggle-button label="notify me"></d-paper-toggle-button>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-toggle-button checked label="notify me"></d-paper-toggle-button>
+                </div>
+            </section>
+            <section>
+                <div>Progress bar</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-progress progress="20" secondaryProgress="60"></d-paper-progress>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-progress progress="20" ></d-paper-progress>
+                </div>
+            </section>
+            <section>
+                <div>Slider (buggy)</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-slider immediateValue="50"></d-paper-slider>
+                </div>
+            </section>
+            <section>
+                <div>Icon button</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button circle icon="menu"></d-paper-button>
+                </div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-button circle icon="add"></d-paper-button>
+                </div>
+            </section>
+            <section>
+                <div>Items</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-core-items>
+                        <d-paper-item icon="add" label="item 1"></d-paper-item>
+                        <d-paper-item icon="add" label="item 2"></d-paper-item>
+                        <d-paper-item icon="add" label="item 3"></d-paper-item>
+                    </d-core-items>
+                </div>
+            </section>
+            <section>
+                <div>Tiles</div>
+                <div style="padding: 50px;display: inline-block;">
+                    <d-paper-tiles>
+                        <d-paper-tile label="test 1" icon="folder"></d-paper-tile>
+                        <d-paper-tile label="test 2" icon="block"></d-paper-tile>
+                        <d-paper-tile label="test 3" icon="cancel"></d-paper-tile>
+                        <d-paper-tile label="test 4" icon="book"></d-paper-tile>
+                    </d-paper-tiles>
+                </div>
+            </section>
+            <section>
+                <div>Shadow</div>
+                <div style="height: 250px;width: 250px;display: inline-block;position:relative;">
+                    <div style="width: 200px; height: 150px;border-radius: inherit;overflow: visible;position: absolute;top: 0;right: 0;bottom: 0;left: 0">
+                        <d-paper-shadow z="5"></d-paper-shadow>
+                    </div>
+                </div>
+                <div style="height: 250px;width: 250px;display: inline-block;position:relative;">
+                    <div style="width: 200px; height: 150px;border-radius: inherit;overflow: visible;position: absolute;top: 0;right: 0;bottom: 0;left: 0">
+                        <d-paper-shadow z="4"></d-paper-shadow>
+                    </div>
+                </div>
+                <div style="height: 250px;width: 250px;display: inline-block;position:relative;">
+                    <div style="width: 200px; height: 150px;border-radius: inherit;overflow: visible;position: absolute;top: 0;right: 0;bottom: 0;left: 0">
+                        <d-paper-shadow z="3"></d-paper-shadow>
+                    </div>
+                </div>
+                <div style="height: 250px;width: 250px;display: inline-block;position:relative;">
+                    <div style="width: 200px; height: 150px;border-radius: inherit;overflow: visible;position: absolute;top: 0;right: 0;bottom: 0;left: 0">
+                        <d-paper-shadow z="2"></d-paper-shadow>
+                    </div>
+                </div>
+                <div style="height: 250px;width: 250px;display: inline-block;position:relative;">
+                    <div style="width: 200px; height: 150px;border-radius: inherit;overflow: visible;position: absolute;top: 0;right: 0;bottom: 0;left: 0">
+                        <d-paper-shadow z="1"></d-paper-shadow>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div>Dialog</div>
+                <div style="padding: 50px;display: inline-block;">
+                    coming soon...
+                </div>
+            </section>
+            <section>
+                <div>Ripple</div>
+                <div style="padding: 50px;display: inline-block;">
+                    coming soon...
+                </div>
+            </section>
+            <section>
+                <div>Toasts</div>
+                <div style="padding: 50px;display: inline-block;">
+                    coming soon...
+                </div>
+            </section>
+            <section>
+                <div>Input</div>
+                <div style="padding: 50px;display: inline-block;">
+                    coming soon...
+                </div>
+            </section>
+            <section>
+                <div>Toolbar</div>
+                <div style="padding: 50px;display: inline-block;">
+                    coming soon...
+                </div>
+            </section>
+            <section>
+                <div>Tabs</div>
+                <div style="padding: 50px;display: inline-block;">
+                    coming soon...
+                </div>
+            </section>
+            <section>
+                <div>Menu button</div>
+                <div style="padding: 50px;display: inline-block;">
+                    coming soon...
+                </div>
+            </section>
+        </div>
+    </d-core-header-panel>
+</main>
+<leftdrawer>
+    <d-core-header-panel>
+        <header>
+            <d-core-toolbar mode="medium-tall">
+                <middle>
+                    <div class="left">Derby components</div>
+                </middle>
+            </d-core-toolbar>
+        </header>
+        <d-core-menu>
+            <d-paper-item icon="folder" label="Derby components"></d-paper-item>
+            <d-paper-item icon="folder" label="Derby components"></d-paper-item>
+            <d-paper-item icon="folder" label="Derby components"></d-paper-item>
+            <d-paper-item icon="folder" label="Derby components"></d-paper-item>
+            <d-paper-item icon="folder" label="Derby components"></d-paper-item>
+            <d-paper-item icon="folder" label="Derby components"></d-paper-item>
+        </d-core-menu>
+    </d-core-header-panel>
+</leftdrawer>
+<rightdrawer>
+    <d-core-header-panel>
+        <header>
+            <d-core-toolbar mode="medium-tall">
+                <middle>
+                    <div class="middle indent"></div>
+                </middle>
+                <bottom>
+                    <div class="indent">Test</div>
+                </bottom>
+                <div class="flex"></div>
+                <d-paper-button circle icon="accessibility"></d-paper-button>
+                <d-paper-button circle icon="delete"></d-paper-button>
+                <d-paper-button circle icon="more-vert"></d-paper-button>
+            </d-core-toolbar>
+        </header>
+        <d-core-menu>
+            <d-paper-item icon="folder" label="Components"></d-paper-item>
+        </d-core-menu>
+    </d-core-header-panel>
+</rightdrawer>
+</d-core-drawer-panel>
