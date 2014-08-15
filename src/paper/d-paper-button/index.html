@@ -53,7 +53,9 @@ To style the background, text and hover color, apply the `background` and
         {{if icon}}
           <d-core-icon class="icon" icon="{{icon}}" src="{{src}}"></d-core-icon>
         {{/if}}
-        <span>{{label}}</span>
+        {{if label}}
+            <span>{{label}}</span>
+        {{/if}}
       </div>
     </div>
 
