@@ -35,5 +35,4 @@ function run(app, options){
     app.component(require('./src/paper/d-paper-toast/index.js'));
     app.component(require('./src/paper/d-paper-toggle-button/index.js'));
     app.loadStyles(__dirname + '/index.styl');
-    app.component(require('./src/example/index.js'));
 }
