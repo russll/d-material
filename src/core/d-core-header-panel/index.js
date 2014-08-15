@@ -90,26 +90,26 @@ CoreHeaderPanel.prototype.scroller = function() {
 }
 
 CoreHeaderPanel.prototype.scroll = function() {
-    var shadowMode = {'waterfall': 1, 'waterfall-tall': 1};
-    var noShadow = {'seamed': 1, 'cover': 1, 'scroll': 1};
-    var tallMode = {'waterfall-tall': 1};
-
-    var main = this.mainContainer;
-    var header = this.header;
-
-    var sTop = main.scrollTop;
-    var atTop = sTop === 0;
-
-    if (header) {
-        this.dropShadow.classList.toggle('hidden', !this.shadow &&
-            (atTop && shadowMode[this.mode] || noShadow[this.mode]));
-
-        if (tallMode[this.mode]) {
-            header.classList.toggle(this.tallClass, atTop);
-        }
-
-        header.classList.toggle('animate', tallMode[this.mode]);
-    }
+//    var shadowMode = {'waterfall': 1, 'waterfall-tall': 1};
+//    var noShadow = {'seamed': 1, 'cover': 1, 'scroll': 1};
+//    var tallMode = {'waterfall-tall': 1};
+//
+//    var main = this.mainContainer;
+//    var header = this.header;
+//
+//    var sTop = main.scrollTop;
+//    var atTop = sTop === 0;
+//
+//    if (header) {
+//        this.dropShadow.classList.toggle('hidden', !this.shadow &&
+//            (atTop && shadowMode[this.mode] || noShadow[this.mode]));
+//
+//        if (tallMode[this.mode]) {
+//            header.classList.toggle(this.tallClass, atTop);
+//        }
+//
+//        header.classList.toggle('animate', tallMode[this.mode]);
+//    }
 
     this.emit('scroll', {target: this.scroller}, this, false);
 }

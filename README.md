@@ -46,6 +46,7 @@ planning:
 - svg/canvas rendering modes
 - integration with leafletjs
 - mobile(touch) support
+
 *chart types
 - Area Charts
 - Bar Charts
