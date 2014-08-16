@@ -1,6 +1,6 @@
 {
   "name": "d-material",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "pack of derbyjs components for quickly creation material design sites",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,10 @@
     "components",
     "material",
     "design",
+    "material design",
+    "android l",
     "ripple",
+    "wave",
     "shadow",
     "ui",
     "effects"
