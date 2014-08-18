@@ -1,10 +1,10 @@
-function CoreDrawerPanel() {}
+function Component() {}
 
-module.exports = CoreDrawerPanel;
+module.exports = Component;
 
-CoreDrawerPanel.prototype.view = __dirname;
+Component.prototype.view = __dirname;
 
-CoreDrawerPanel.prototype.init = function () {
+Component.prototype.init = function () {
     /**
      * Max-width when the panel changes to narrow layout.
      *
@@ -76,23 +76,23 @@ CoreDrawerPanel.prototype.init = function () {
     this.model.set('dragging', false);
 }
 
-CoreDrawerPanel.prototype.create = function () {
+Component.prototype.create = function () {
     this.model.set('transition', true);
 }
 
-CoreDrawerPanel.prototype.togglePanel = function () {
+Component.prototype.togglePanel = function () {
     this.selected = this.selected === 'main' ? 'drawer' : 'main';
 }
 
-CoreDrawerPanel.prototype.openDrawer = function () {
+Component.prototype.openDrawer = function () {
     this.selected = 'drawer';
 }
 
-CoreDrawerPanel.prototype.closeDrawer = function () {
+Component.prototype.closeDrawer = function () {
     this.selected = 'main';
 }
 
-CoreDrawerPanel.prototype.queryMatchesChanged = function () {
+Component.prototype.queryMatchesChanged = function () {
     if (this.queryMatches) {
         this.selected = this.defaultSelected;
     }
@@ -104,7 +104,7 @@ CoreDrawerPanel.prototype.queryMatchesChanged = function () {
 
 // swipe support for the drawer, inspired by
 // https://github.com/Polymer/core-drawer-panel/pull/6
-CoreDrawerPanel.prototype.trackStart = function (e) {
+Component.prototype.trackStart = function (e) {
     if (this.narrow && !this.disableSwipe) {
         this.dragging = true;
 
@@ -122,7 +122,7 @@ CoreDrawerPanel.prototype.trackStart = function (e) {
     }
 }
 
-CoreDrawerPanel.prototype.track = function (e) {
+Component.prototype.track = function (e) {
     if (this.dragging) {
         var x;
         if (this.rightDrawer) {
@@ -134,7 +134,7 @@ CoreDrawerPanel.prototype.track = function (e) {
     }
 }
 
-CoreDrawerPanel.prototype.trackEnd = function (e) {
+Component.prototype.trackEnd = function (e) {
     if (this.dragging) {
         this.dragging = false;
         this.transition = true;
@@ -148,7 +148,7 @@ CoreDrawerPanel.prototype.trackEnd = function (e) {
     }
 }
 
-CoreDrawerPanel.prototype.moveDrawer = function (translateX) {
+Component.prototype.moveDrawer = function (translateX) {
     var s = this.$.drawer.style;
     s.webkitTransform = s.transform =
             translateX === null ? '' : 'translate3d(' + translateX + 'px, 0, 0)';
