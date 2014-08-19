@@ -46,13 +46,13 @@ Apply `circle` class to make the rippling effect within a circle.
 
 */
 
-function PaperRipple() {}
+function Component() {}
 
-module.exports = PaperRipple;
+module.exports = Component;
 
-PaperRipple.prototype.view = __dirname;
+Component.prototype.view = __dirname;
 
-PaperRipple.prototype.init = function () {
+Component.prototype.init = function () {
     this.model.setNull('width', 0);
     this.model.setNull('height', 0);
 
@@ -85,7 +85,7 @@ PaperRipple.prototype.init = function () {
     this.model.setNull('waveMaxRadius', 150);
 }
 
-PaperRipple.prototype.create = function () {
+Component.prototype.create = function () {
     // Shortcuts.
     this.pow = Math.pow;
     this.now = Date.now;
@@ -94,7 +94,7 @@ PaperRipple.prototype.create = function () {
     }
 }
 
-PaperRipple.prototype.setupCanvas = function () {
+Component.prototype.setupCanvas = function () {
     this.model.set('width', this.wrapper.clientWidth * this.model.get('pixelDensity'));
     this.model.set('height', this.wrapper.clientHeight * this.model.get('pixelDensity'));
     var ctx = this.canvas.getContext('2d');
@@ -104,7 +104,7 @@ PaperRipple.prototype.setupCanvas = function () {
     }
 }
 
-PaperRipple.prototype.downAction = function (e) {
+Component.prototype.downAction = function (e) {
     this.setupCanvas();
     var wave = this.createWave(this.canvas);
 
@@ -133,7 +133,7 @@ PaperRipple.prototype.downAction = function (e) {
     requestAnimationFrame(this._loop);
 }
 
-PaperRipple.prototype.upAction = function () {
+Component.prototype.upAction = function () {
     for (var i = 0; i < this.waves.length; i++) {
         // Declare the next wave that has mouse down to be mouse'ed up.
         var wave = this.waves[i];
@@ -148,11 +148,11 @@ PaperRipple.prototype.upAction = function () {
     this._loop && requestAnimationFrame(this._loop);
 }
 
-PaperRipple.prototype.cancel = function () {
+Component.prototype.cancel = function () {
     this.cancelled = true;
 }
 
-PaperRipple.prototype.animate = function (ctx) {
+Component.prototype.animate = function (ctx) {
     var shouldRenderNextFrame = false;
 
     // Clear the canvas
@@ -251,7 +251,7 @@ PaperRipple.prototype.animate = function (ctx) {
 //
 // INK EQUATIONS
 //
-PaperRipple.prototype.waveRadiusFn = function (touchDownMs, touchUpMs, anim) {
+Component.prototype.waveRadiusFn = function (touchDownMs, touchUpMs, anim) {
     // Convert from ms to s.
     var touchDown = touchDownMs / 1000;
     var touchUp = touchUpMs / 1000;
@@ -266,7 +266,7 @@ PaperRipple.prototype.waveRadiusFn = function (touchDownMs, touchUpMs, anim) {
     return Math.abs(size);
 }
 
-PaperRipple.prototype.waveOpacityFn = function (td, tu, anim) {
+Component.prototype.waveOpacityFn = function (td, tu, anim) {
     // Convert from ms to s.
     var touchDown = td / 1000;
     var touchUp = tu / 1000;
@@ -278,7 +278,7 @@ PaperRipple.prototype.waveOpacityFn = function (td, tu, anim) {
     return Math.max(0, anim.initialOpacity - touchUp * anim.opacityDecayVelocity);
 }
 
-PaperRipple.prototype.waveOuterOpacityFn = function (td, tu, anim) {
+Component.prototype.waveOuterOpacityFn = function (td, tu, anim) {
     // Convert from ms to s.
     var touchDown = td / 1000;
     var touchUp = tu / 1000;
@@ -291,7 +291,7 @@ PaperRipple.prototype.waveOuterOpacityFn = function (td, tu, anim) {
 }
 
 // Determines whether the wave should be completely removed.
-PaperRipple.prototype.waveDidFinish = function (wave, radius, anim) {
+Component.prototype.waveDidFinish = function (wave, radius, anim) {
     var waveOpacity = this.waveOpacityFn(wave.tDown, wave.tUp, anim);
     // If the wave opacity is 0 and the radius exceeds the bounds
     // of the element, then this is finished.
@@ -301,7 +301,7 @@ PaperRipple.prototype.waveDidFinish = function (wave, radius, anim) {
     return false;
 };
 
-PaperRipple.prototype.waveAtMaximum = function (wave, radius, anim) {
+Component.prototype.waveAtMaximum = function (wave, radius, anim) {
     var waveOpacity = this.waveOpacityFn(wave.tDown, wave.tUp, anim);
     if (waveOpacity >= anim.initialOpacity && radius >= Math.min(wave.maxRadius, this.model.get('waveMaxRadius'))) {
         return true;
@@ -312,7 +312,7 @@ PaperRipple.prototype.waveAtMaximum = function (wave, radius, anim) {
 //
 // DRAWING
 //
-PaperRipple.prototype.drawRipple = function (ctx, x, y, radius, innerColor, outerColor) {
+Component.prototype.drawRipple = function (ctx, x, y, radius, innerColor, outerColor) {
     if (outerColor) {
         ctx.fillStyle = outerColor;
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -326,7 +326,7 @@ PaperRipple.prototype.drawRipple = function (ctx, x, y, radius, innerColor, oute
 //
 // SETUP
 //
-PaperRipple.prototype.createWave = function (elem) {
+Component.prototype.createWave = function (elem) {
     var elementStyle = window.getComputedStyle(elem);
     var fgColor = elementStyle.color;
 
@@ -342,14 +342,14 @@ PaperRipple.prototype.createWave = function (elem) {
     return wave;
 }
 
-PaperRipple.prototype.removeWaveFromScope = function (scope, wave) {
+Component.prototype.removeWaveFromScope = function (scope, wave) {
     if (scope.waves) {
         var pos = scope.waves.indexOf(wave);
         scope.waves.splice(pos, 1);
     }
 };
 
-PaperRipple.prototype.cssColorWithAlpha = function (cssColor, alpha) {
+Component.prototype.cssColorWithAlpha = function (cssColor, alpha) {
     var parts = cssColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
     if (typeof alpha == 'undefined') {
         alpha = 1;
@@ -360,11 +360,11 @@ PaperRipple.prototype.cssColorWithAlpha = function (cssColor, alpha) {
     return 'rgba(' + parts[1] + ', ' + parts[2] + ', ' + parts[3] + ', ' + alpha + ')';
 }
 
-PaperRipple.prototype.dist = function (p1, p2) {
+Component.prototype.dist = function (p1, p2) {
     return Math.sqrt(this.pow(p1.x - p2.x, 2) + this.pow(p1.y - p2.y, 2));
 }
 
-PaperRipple.prototype.distanceFromPointToFurthestCorner = function (point, size) {
+Component.prototype.distanceFromPointToFurthestCorner = function (point, size) {
     var tl_d = this.dist(point, {x: 0, y: 0});
     var tr_d = this.dist(point, {x: size.w, y: 0});
     var bl_d = this.dist(point, {x: 0, y: size.h});
