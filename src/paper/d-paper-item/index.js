@@ -55,7 +55,7 @@ Component.prototype.downAction = function(event) {
     this.emit('mousedown', event);
 }
 
-Component.prototype.upAction = function() {
+Component.prototype.upAction = function(event) {
     this.model.set('pressed', false);
 
     if (!this.model.get('isToggle')) {
